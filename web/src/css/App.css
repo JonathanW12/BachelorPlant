@@ -8,7 +8,24 @@
   --fnt-family-standard: Roboto;
 
   --size-searchbar:3.125rem;
+  --size-border-unselected: 0.15rem;
 }
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px var(--clr-ineractive-200);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--clr-ineractive-200);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-border-400);
+}
+
 .App {
   margin-left: 5%;
   margin-right: 5%;
@@ -25,9 +42,6 @@
   width: 65vw;
   margin-right: 1.875rem;
 }
-.singlePlant{
-  flex:1,
-}
 
 .searchBar input{
   height: var(--size-searchbar);
@@ -42,4 +56,10 @@
   border-right:none;
   padding-left: 4%;
   flex:1;
+}
+
+img{
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
 }

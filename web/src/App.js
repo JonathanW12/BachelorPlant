@@ -19,10 +19,9 @@ function App() {
             margin="0 0 0 30px"
           ></CustomButton>
         </div>
+        <div className="dataContainer"></div>
       </div>
-      <div className="singlePlant">
-        <PlantShowcase />
-      </div>
+      <PlantShowcase />
     </div>
   );
 }

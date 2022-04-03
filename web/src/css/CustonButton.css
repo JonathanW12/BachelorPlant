@@ -6,6 +6,7 @@ button {
     background-color: var(--clr-ineractive-200);
     border-style: solid;
     box-sizing: border-box;
+    border-width: var(--size-border-unselected);
     border-color: var(--clr-border-400);
     border-radius: 1000px;
     cursor: pointer;
