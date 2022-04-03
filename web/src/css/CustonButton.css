@@ -1,0 +1,12 @@
+button {
+    height: var(--size-searchbar);
+    font-style: italic;
+    font-size: var(--fnt-size-medium);
+    color: var(--clr-text-900);
+    background-color: var(--clr-ineractive-200);
+    border-style: solid;
+    box-sizing: border-box;
+    border-color: var(--clr-border-400);
+    border-radius: 1000px;
+    cursor: pointer;
+}
