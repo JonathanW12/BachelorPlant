@@ -18,7 +18,7 @@ function PlantShowcase(props) {
   useEffect(() => {
     console.log(acer_dividii);
     setActivePlant(loadData());
-  });
+  }, []);
 
   const renderAttribute = (key, value) => {
     if (key === "description" || key === "_id") return;

@@ -1,6 +1,7 @@
 import "./css/App.css";
 import CustomButton from "./components/CustonButton";
 import PlantShowcase from "./components/PlantShowcase";
+import PlantTable from "./components/PlantTable";
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
             margin="0 0 0 30px"
           ></CustomButton>
         </div>
-        <div className="dataContainer"></div>
+        <div className="dataContainer">
+          <PlantTable />
+        </div>
       </div>
       <PlantShowcase />
     </div>
