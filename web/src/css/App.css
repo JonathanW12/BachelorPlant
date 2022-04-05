@@ -8,11 +8,15 @@
   --fnt-family-standard: Roboto;
 
   --size-searchbar:3.125rem;
-  --size-border-unselected: 0.15rem;
+  --size-border-unselected: 0.1rem;
+  --size-border-selected: 0.15rem;
+  --size-data-width: 65vw;
+
+  --radius-table-row:0.7rem
 }
 
 ::-webkit-scrollbar {
-  width: 1rem;
+  width: 0.8rem;
 }
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px var(--clr-ineractive-200);
@@ -39,7 +43,7 @@
 .searchBar{
   height: var(--size-searchbar);
   display: flex;
-  width: 65vw;
+  width: var(--size-data-width);
   margin-right: 1.875rem;
 }
 
@@ -58,8 +62,16 @@
   flex:1;
 }
 
+.dataContainer{
+  width: var(--size-data-width);
+  overflow: scroll;
+  margin-top: 3rem;
+  height: 75vh;
+  text-align: left;
+  word-break: break-all;
+}
+
 img{
   width: 100%;
   height: auto;
-  border-radius: 1rem;
 }

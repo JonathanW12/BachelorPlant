@@ -2,8 +2,25 @@ import "./css/App.css";
 import CustomButton from "./components/CustonButton";
 import PlantShowcase from "./components/PlantShowcase";
 import PlantTable from "./components/PlantTable";
+import React, { useState } from "react";
+import { acer_dividii } from "./testData";
+import { getPlantById, getAllPlantData } from "./components/QueryHandler";
 
 function App() {
+  //Selected plant
+  const [activePlant, setActivePlant] = useState(acer_dividii);
+  async function updateActivePlant(id) {
+    const res = await getPlantById(id);
+    console.log("res is: " + res);
+    setActivePlant(res);
+  }
+  //Plant data
+  const [tableData, setTableData] = useState([]);
+  async function updateTableData() {
+    const res = await getAllPlantData();
+    console.log(res);
+    setTableData(res);
+  }
   return (
     <div className="App">
       <div className="searchAndData">
@@ -21,10 +38,20 @@ function App() {
           ></CustomButton>
         </div>
         <div className="dataContainer">
-          <PlantTable />
+          <button onClick={() => updateActivePlant("623c43d4df51c462316e05dd")}>
+            Update single plant test
+          </button>
+          <button
+            onClick={() => {
+              updateTableData();
+            }}
+          >
+            Update all plants
+          </button>
+          <PlantTable tData={tableData} />
         </div>
       </div>
-      <PlantShowcase />
+      <PlantShowcase data={activePlant} />
     </div>
   );
 }

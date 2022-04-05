@@ -6,26 +6,14 @@ import "../css/PlantShowcase.css";
 import aesculus1 from "../aesculus_hippocastanum_fall.jpg";
 import aesculus2 from "../aesculus_hippocastanum_2.jpg";
 import aesculus3 from "../aesculus_hippocastanum_3.jpg";
-import { acer_dividii } from "../testData";
 
 function PlantShowcase(props) {
-  const [activePlant, setActivePlant] = useState(0);
-
-  const loadData = () => {
-    return acer_dividii;
-  };
-
-  useEffect(() => {
-    console.log(acer_dividii);
-    setActivePlant(loadData());
-  }, []);
-
-  const renderAttribute = (key, value) => {
+  const renderAttribute = (key) => {
     if (key === "description" || key === "_id") return;
     return (
       <p key={key}>
         {key}:
-        <span className="plantValue">{PlantToString(activePlant, key)}</span>
+        <span className="plantValue">{PlantToString(props.data, key)}</span>
       </p>
     );
   };
@@ -34,11 +22,11 @@ function PlantShowcase(props) {
     <div className="singlePlant">
       <img src={aesculus1} alt="test" />
       <div className="innerPlantShowcaseContainer">
-        <h1 className="botanicalName">{activePlant.botanical_name}</h1>
-        <h1>{activePlant.danish_name}</h1>
-        <p className="_description">{activePlant.description}</p>
+        <h1 className="botanicalName">{props.data.botanical_name}</h1>
+        <h1>{props.data.danish_name}</h1>
+        <p className="_description">{props.data.description}</p>
         <div className="plantAtt">
-          {Object.keys(activePlant).map((key, value) =>
+          {Object.keys(props.data).map((key, value) =>
             renderAttribute(key, value)
           )}
         </div>

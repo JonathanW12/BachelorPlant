@@ -1,21 +1,13 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import { useTable } from "react-table";
 import { ColumnsTemplate } from "./ColumnsTemplate";
 import { acer_dividii } from "../testData";
 import { PlantToString } from "./PlantToString";
+import "../css/PlantTable.css";
 
-function PlantTable() {
-  const loadData = () => {
-    //Creating temp data
-    let loadedData = [];
-    for (var i = 0; i < 10; i++) {
-      loadedData.push(acer_dividii);
-    }
-    return loadedData;
-  };
-  const lData = loadData();
+function PlantTable(props) {
   const columns = useMemo(() => ColumnsTemplate, []);
-  const data = useMemo(() => lData, []);
+  const data = useMemo(() => props.tData, [props.tData]);
 
   const {
     getTableProps,
@@ -31,7 +23,12 @@ function PlantTable() {
 
   return (
     <>
-      <table {...getTableProps()}>
+      <table
+        className="--table-container"
+        cellSpacing="0"
+        cellpadding="0"
+        {...getTableProps()}
+      >
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>

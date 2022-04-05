@@ -16,7 +16,7 @@
 .singlePlant{
     flex:1;
     border-style: solid;
-    border-width: var(--size-border-unselected);
+    border-width: var(--size-border-selected);
     box-sizing: border-box;
     border-color: var(--clr-border-400);
     border-radius: 1rem;
@@ -27,6 +27,9 @@
      margin-bottom: 0;
      font-size: 1.5rem;
  } 
+ .singlePlant img{
+     border-radius: 1rem 1rem 0 0 ;
+ }
 .plantShowcaseImageContainer{
     display: flex;
     flex-direction: row;
@@ -34,6 +37,7 @@
 .plantShowcaseImageContainer img{
     max-width: 100%;
     min-width: 40%;
+    border-radius: 1rem;
 }
 .botanicalName{
     font-style: italic;

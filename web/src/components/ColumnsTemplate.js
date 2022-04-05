@@ -1,4 +1,13 @@
+import aesculus2 from "../aesculus_hippocastanum_2.jpg";
+
 export const ColumnsTemplate = [
+  {
+    id: "picture",
+    Header: "Photo",
+    Cell: (props) => (
+      <img src={aesculus2} width={60} alt="Billede utilgængeligt" />
+    ),
+  },
   {
     Header: "Botanisk navn",
     accessor: "botanical_name",
@@ -66,21 +75,21 @@ export const ColumnsTemplate = [
     id: "ph_tolerance",
     Header: "ph",
     accessor: (d) => {
-      return d.ph_tolerance.ph_min + " til " + d.ph_tolerance.ph_max + " ph";
+      return d.ph_tolerance.ph_min + " - " + d.ph_tolerance.ph_max + " ph";
     },
   },
   {
     id: "size_height",
     Header: "Højde",
     accessor: (d) => {
-      return d.size_height.size_min + " til " + d.size_height.size_max + "m";
+      return d.size_height.size_min + " - " + d.size_height.size_max + "m";
     },
   },
   {
     id: "size_spread",
     Header: "Spredning",
     accessor: (d) => {
-      return d.size_spread.size_min + " til " + d.size_spread.size_max + "m";
+      return d.size_spread.size_min + " - " + d.size_spread.size_max + "m";
     },
   },
   {
@@ -94,7 +103,7 @@ export const ColumnsTemplate = [
     accessor: (d) => {
       return (
         d.water_prefferences.water_min +
-        "/5 til " +
+        "/5 - " +
         d.water_prefferences.water_max +
         "/5"
       );
