@@ -21,12 +21,12 @@ const plantSchema = new Schema({
   salt_tolerance: Boolean,
   site: Number,
   size_height: {
-    height_min: Number,
-    height_max: Number,
+    size_min: Number,
+    size_max: Number,
   },
   size_spread: {
-    spread_min: Number,
-    spread_max: Number,
+    size_min: Number,
+    size_max: Number,
   },
   soil_types: [String],
   plant_type: [String],

@@ -6,7 +6,11 @@ function CustomButton(props) {
     width: props.width,
     margin: props.margin,
   };
-  return <button style={myStyle}>{props.title}</button>;
+  return (
+    <button style={myStyle} onClick={props.onClick}>
+      {props.title}
+    </button>
+  );
 }
 
 export default CustomButton;

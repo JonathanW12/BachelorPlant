@@ -5,12 +5,23 @@ export const ColumnsTemplate = [
     id: "picture",
     Header: "Photo",
     Cell: (props) => (
-      <img src={aesculus2} width={60} alt="Billede utilgængeligt" />
+      <div className="imageHolder">
+        <img src={aesculus2} width={60} alt="Billede utilgængeligt" />
+      </div>
     ),
   },
   {
+    id: "botanical_name",
     Header: "Botanisk navn",
     accessor: "botanical_name",
+    Cell: (props) => {
+      const { value, cell } = props;
+      return (
+        <span className="longWordContainer">
+          <p>{value}</p>
+        </span>
+      );
+    },
   },
   {
     Header: "Dansk navn",

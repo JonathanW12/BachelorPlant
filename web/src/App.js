@@ -30,27 +30,25 @@ function App() {
             name="searchByNameInput"
             placeholder="Søg på plantenavn eller art..."
           ></input>
-          <CustomButton title="Søg med navn" width="200px"></CustomButton>
+          <CustomButton
+            onClick={() => {
+              updateTableData();
+            }}
+            title="Søg med navn"
+            width="200px"
+          ></CustomButton>
           <CustomButton
             title="Søg med filtre"
             width="256px"
             margin="0 0 0 30px"
+            onClick={() => updateActivePlant("623c43d4df51c462316e05dd")}
           ></CustomButton>
         </div>
         <div className="dataContainer">
-          <button onClick={() => updateActivePlant("623c43d4df51c462316e05dd")}>
-            Update single plant test
-          </button>
-          <button
-            onClick={() => {
-              updateTableData();
-            }}
-          >
-            Update all plants
-          </button>
           <PlantTable tData={tableData} />
         </div>
       </div>
+      <hr />
       <PlantShowcase data={activePlant} />
     </div>
   );
