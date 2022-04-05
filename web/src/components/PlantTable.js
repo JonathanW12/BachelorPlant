@@ -2,18 +2,20 @@ import React, { useMemo } from "react";
 import { useTable } from "react-table";
 import { ColumnsTemplate } from "./ColumnsTemplate";
 import { acer_dividii } from "../testData";
+import { PlantToString } from "./PlantToString";
 
 function PlantTable() {
-  //TEMPORARY
-  const mockData = [acer_dividii];
-  for (var i = 0; i < 10; i++) {
-    mockData.push(acer_dividii);
-    console.log(i);
-  }
-  //-------------
-  console.log("test1: " + mockData[0].botanical_name);
+  const loadData = () => {
+    //Creating temp data
+    let loadedData = [];
+    for (var i = 0; i < 10; i++) {
+      loadedData.push(acer_dividii);
+    }
+    return loadedData;
+  };
+  const lData = loadData();
   const columns = useMemo(() => ColumnsTemplate, []);
-  const data = useMemo(() => mockData, []);
+  const data = useMemo(() => lData, []);
 
   const {
     getTableProps,
@@ -26,9 +28,6 @@ function PlantTable() {
     columns,
     data,
   });
-
-  console.log("data: " + data);
-  //console.log("columns: " + columns);
 
   return (
     <>

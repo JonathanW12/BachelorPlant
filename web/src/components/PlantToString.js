@@ -23,7 +23,8 @@ export const PlantToString = (data, feature) => {
     case "botanical_name":
       return data.botanical_name;
     case "danish_name":
-      return data.danish_name;
+      return "test";
+    //return data.danish_name;
     case "foliage":
       return data.foliage;
     case "fruit":
@@ -55,5 +56,7 @@ export const PlantToString = (data, feature) => {
       if (data.wind_tolerance === "3") return "Meget tolerant";
     case "plant_type":
       return data.plant_type;
+    default:
+      return " ";
   }
 };
