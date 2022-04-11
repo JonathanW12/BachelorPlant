@@ -64,6 +64,11 @@ app.use(
       wind_min:Int,
       wind_max:Int,
     }
+    input SiteInterval{
+      site_max:Int,
+      site_min:Int,
+    }
+
 
     type Plant{
       _id: ID!,
@@ -73,7 +78,7 @@ app.use(
       foliage:String,
       flowers:Boolean,
       poisonous:Boolean,
-      root_system: String,
+      root_system: [String],
       salt_tolerance: Boolean,
       site: Int,
       soil_types: [String],
@@ -93,7 +98,7 @@ app.use(
         foliage:String,
         flowers:Boolean,
         poisonous:Boolean,
-        root_system: String,
+        root_system: [String],
         salt_tolerance: Boolean,
         site: Int!,
         soil_types: [String],
@@ -110,7 +115,7 @@ app.use(
         plants: [Plant!]
         singlePlant(_id:ID!):Plant!
         plantByName(botanical_name:String!):[Plant!]
-        plantsMultipleArgs(wind_interval:WindInput,size_height:HeightInput):[Plant!]
+        plantsMultipleArgs(wind_interval:WindInput,size_height:HeightInput,ph_interval:PhInput):[Plant!]
     }
 
     type RootMutation{
@@ -158,7 +163,7 @@ app.use(
 
         var searchObj = {
           $and: Object.keys(newArgs).map((e) => {
-            console.log(e);
+            console.log("element is: " + e);
             return keyToSearchString.keyToSearchString(newArgs, e);
           }),
         };
