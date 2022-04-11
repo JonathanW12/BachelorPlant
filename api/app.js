@@ -7,6 +7,7 @@ const Plant = require("./models/plant");
 const { events } = require("./models/plant");
 const { restart } = require("nodemon");
 const plant = require("./models/plant");
+const keyToSearchString = require("./SearchQueries");
 
 const app = express();
 
@@ -59,6 +60,10 @@ app.use(
       ph_min:Int,
       ph_max:Int,
     }
+    input WindInput{
+      wind_min:Int,
+      wind_max:Int,
+    }
 
     type Plant{
       _id: ID!,
@@ -104,6 +109,8 @@ app.use(
     type RootQuery{
         plants: [Plant!]
         singlePlant(_id:ID!):Plant!
+        plantByName(botanical_name:String!):[Plant!]
+        plantsMultipleArgs(wind_interval:WindInput,size_height:HeightInput):[Plant!]
     }
 
     type RootMutation{
@@ -129,6 +136,42 @@ app.use(
       },
       singlePlant: (args) => {
         return Plant.findOne({ _id: args._id });
+      },
+      plantByName: (args) => {
+        return Plant.find({
+          $or: [
+            { botanical_name: { $regex: args.botanical_name } },
+            { danish_name: { $regex: args.botanical_name } },
+          ],
+        })
+          .then((plants) => {
+            return plants.map((plant) => {
+              return { ...plant._doc, _id: plant._id.toString() };
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      plantsMultipleArgs: (args) => {
+        const newArgs = JSON.parse(JSON.stringify(args));
+
+        var searchObj = {
+          $and: Object.keys(newArgs).map((e) => {
+            console.log(e);
+            return keyToSearchString.keyToSearchString(newArgs, e);
+          }),
+        };
+        console.log(searchObj);
+        return Plant.find(searchObj)
+          .then((plants) => {
+            return plants.map((plant) => {
+              return { ...plant._doc, _id: plant._id.toString() };
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       },
       createPlant: (args) => {
         const newPlant = new Plant({
