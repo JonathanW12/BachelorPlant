@@ -64,7 +64,7 @@ app.use(
       wind_min:Int,
       wind_max:Int,
     }
-    input SiteInterval{
+    input SiteInput{
       site_max:Int,
       site_min:Int,
     }
@@ -114,8 +114,22 @@ app.use(
     type RootQuery{
         plants: [Plant!]
         singlePlant(_id:ID!):Plant!
-        plantByName(botanical_name:String!):[Plant!]
-        plantsMultipleArgs(wind_interval:WindInput,size_height:HeightInput,ph_interval:PhInput):[Plant!]
+        plantByName(input_name:String!):[Plant!]
+        plantsMultipleArgs(
+          input_wind:WindInput,
+          input_height:HeightInput,
+          input_ph:PhInput,
+          input_spread:SpreadInput,
+          input_water:WaterInput
+          input_site:SiteInput,
+          input_poisonous:Boolean,
+          input_salt: Boolean,
+          input_flowers: Boolean,
+          input_fruit: Boolean,
+          input_root: [String],
+          input_type: [String],
+          input_soil: [String],
+          ):[Plant!]
     }
 
     type RootMutation{
@@ -145,8 +159,8 @@ app.use(
       plantByName: (args) => {
         return Plant.find({
           $or: [
-            { botanical_name: { $regex: args.botanical_name } },
-            { danish_name: { $regex: args.botanical_name } },
+            { botanical_name: { $regex: args.input_name } },
+            { danish_name: { $regex: args.input_name } },
           ],
         })
           .then((plants) => {

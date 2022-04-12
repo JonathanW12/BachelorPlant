@@ -17,7 +17,7 @@ const plantSchema = new Schema({
     ph_max: Number,
   },
   poisonous: Boolean,
-  root_system: {},
+  root_system: [String],
   salt_tolerance: Boolean,
   site: Number,
   size_height: {
