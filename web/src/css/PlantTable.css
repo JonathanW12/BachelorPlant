@@ -23,7 +23,16 @@
     padding: 0 4rem 0 0;
     max-width: 8rem;
 }
-tbody{
+thead{
+    position: sticky;
+    z-index: 1;
+    background-color: white;
+    height: 4rem;
+    top:0;
+}
+.testRow{
+    background-color: green;
+    width: 100%;
 }
 tbody td{
     border-style: outset;

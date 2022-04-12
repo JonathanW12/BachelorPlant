@@ -1,0 +1,62 @@
+.searchBarOuterContainer input{
+    height: var(--size-searchbar);
+    font-style: italic;
+    font-size: var(--fnt-size-medium);
+    color: var(--clr-text-900);
+    border:none;
+    padding-left: 4%;
+    width: 100%;
+    border-style:solid;
+    box-sizing: border-box;
+    border-radius: 1px;
+    border-color: var(--clr-border-400);
+    border-radius: 1000px 0px 0px 1000px;
+    border-right:none;
+    border-width: var(--size-border-unselected);
+    margin-right: -3rem;
+}
+
+.test{
+    border-style:solid;
+    box-sizing: border-box;
+    border-radius: 1px;
+    border-color: var(--clr-border-400);
+    border-radius: 1000px 0px 0px 1000px;
+    border-right:none;
+    border-width: var(--size-border-unselected);
+}
+.searchBarOuterContainer{
+    height: var(--size-searchbar);
+    display: flex;
+    width: var(--size-data-width);
+    margin-right: 1.875rem;
+}
+
+.searchBarOuterContainer input:focus{
+    outline:none;   
+}
+
+.searchByNameContainer{
+    width: 100%;
+    display: flex;
+}
+button {
+    height: var(--size-searchbar);
+    font-style: italic;
+    font-size: var(--fnt-size-medium);
+    color: var(--clr-text-900);
+    background-color: var(--clr-ineractive-200);
+    border-style: solid;
+    box-sizing: border-box;
+    border-width: var(--size-border-unselected);
+    border-color: var(--clr-border-400);
+    border-radius: 1000px;
+    cursor: pointer;    
+}
+.nameButton button{
+    width: 13rem;
+}
+.filterButton button{
+    min-width: 16rem;
+    margin: 0 0 0 2rem;
+}

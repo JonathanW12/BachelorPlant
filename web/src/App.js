@@ -1,10 +1,12 @@
 import "./css/App.css";
-import CustomButton from "./components/CustonButton";
 import PlantShowcase from "./components/PlantShowcase";
 import PlantTable from "./components/PlantTable";
+import SearchOptions from "./components/SearchOptions";
 import React, { useState } from "react";
 import { acer_dividii } from "./testData";
 import { getPlantById, getAllPlantData } from "./components/QueryHandler";
+import SearchBarAndButtons from "./components/SearchBarAndButtons";
+import { Search } from "@mui/icons-material";
 
 function App() {
   //Selected plant
@@ -21,31 +23,23 @@ function App() {
     console.log(res);
     setTableData(res);
   }
+
+  //Filtering
+  const [filterOpen, setFilterOpen] = useState(false);
   return (
     <div className="App">
       <div className="searchAndData">
-        <div className="searchBar">
-          <input
-            type="text"
-            name="searchByNameInput"
-            placeholder="Søg på plantenavn eller art..."
-          ></input>
-          <CustomButton
-            onClick={() => {
-              updateTableData();
-            }}
-            title="Søg med navn"
-            width="200px"
-          ></CustomButton>
-          <CustomButton
-            title="Søg med filtre"
-            width="256px"
-            margin="0 0 0 30px"
-            onClick={() => updateActivePlant("623c43d4df51c462316e05dd")}
-          ></CustomButton>
-        </div>
+        <SearchBarAndButtons
+          _setTableData={setTableData}
+          _setFilterOpen={setFilterOpen}
+        />
+        {filterOpen && (
+          <div className="filterOptions">
+            <SearchOptions />
+          </div>
+        )}
         <div className="dataContainer">
-          <PlantTable tData={tableData} />
+          <PlantTable tData={tableData} activeP={setActivePlant} />
         </div>
       </div>
       <hr />

@@ -1,5 +1,4 @@
 import React from "react";
-import "../css/CustonButton.css";
 
 function CustomButton(props) {
   const myStyle = {
