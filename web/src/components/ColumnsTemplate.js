@@ -24,6 +24,7 @@ export const ColumnsTemplate = [
     },
   },
   {
+    id: "danish_name",
     Header: "Dansk navn",
     accessor: "danish_name",
   },
@@ -49,10 +50,12 @@ export const ColumnsTemplate = [
     },
   },
   {
+    id: "foliage",
     Header: "Foliage",
     accessor: "foliage",
   },
   {
+    id: "soil_types",
     Header: "Jord typer",
     accessor: "soil_types",
   },

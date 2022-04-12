@@ -1,0 +1,38 @@
+.tableOptionsContainer{
+    width: var(--size-data-width);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.tableOptionsContainer span{
+    color: var(--clr-text-900);
+}
+
+.tableOptionsContainer button{
+    background-color: white;
+    border: none;
+    color: var(--clr-ineractive-200);
+    padding: none;
+    height: 100%;
+}
+.buttonContainer{
+    flex:1;
+    display: flex;
+    float:right;
+    justify-content: end;
+}
+.checkBox{
+    width: 13rem;
+    margin-bottom: 1.5rem;
+}
+.checkBox button{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkBoxContainer{
+    margin: 1rem 2rem 0 2rem;
+    background-color: blue;
+}

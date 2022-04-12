@@ -7,6 +7,7 @@ import { acer_dividii } from "./testData";
 import { getPlantById, getAllPlantData } from "./components/QueryHandler";
 import SearchBarAndButtons from "./components/SearchBarAndButtons";
 import { Search } from "@mui/icons-material";
+import TableOptions from "./components/TableOptions";
 
 function App() {
   //Selected plant
@@ -23,7 +24,6 @@ function App() {
     console.log(res);
     setTableData(res);
   }
-
   //Filtering
   const [filterOpen, setFilterOpen] = useState(false);
   return (
@@ -39,6 +39,7 @@ function App() {
           </div>
         )}
         <div className="dataContainer">
+          <TableOptions />
           <PlantTable tData={tableData} activeP={setActivePlant} />
         </div>
       </div>
