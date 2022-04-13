@@ -1,28 +1,35 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, useReducer } from "react";
 import { useTable } from "react-table";
 import { ColumnsTemplate } from "./ColumnsTemplate";
-import { acer_dividii } from "../testData";
-import { PlantToString } from "./PlantToString";
 import "../css/PlantTable.css";
+import { getActiveHeaders } from "../QueryData";
 
-function PlantTable(props) {
+function PlantTable({ _hiddenColumns, activeP, tData }) {
   const columns = useMemo(() => ColumnsTemplate, []);
-  const data = useMemo(() => props.tData, [props.tData]);
+  const data = useMemo(() => tData, [tData]);
 
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    footerGroups,
     rows,
     prepareRow,
+    setHiddenColumns,
   } = useTable({
     columns,
     data,
+    initialState: {
+      hiddenColumns: getActiveHeaders(),
+    },
   });
+
+  useEffect(() => {
+    setHiddenColumns(getActiveHeaders());
+  }, [_hiddenColumns]);
 
   return (
     <>
+      <div></div>
       <div className="tableDiv">
         <table
           className="--table-container"
@@ -47,7 +54,7 @@ function PlantTable(props) {
               return (
                 <tr
                   {...row.getRowProps()}
-                  onClick={() => props.activeP(row.original)}
+                  onClick={() => activeP(row.original)}
                 >
                   {row.cells.map((cell) => {
                     return (
@@ -64,6 +71,4 @@ function PlantTable(props) {
   );
 }
 
-/*
- */
 export default PlantTable;

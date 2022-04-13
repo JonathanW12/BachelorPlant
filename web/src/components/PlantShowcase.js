@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PlantToString } from "./PlantToString";
 import "../css/PlantShowcase.css";
+import { ColumnsTemplate } from "./ColumnsTemplate";
 
 //temp
 import aesculus1 from "../aesculus_hippocastanum_fall.jpg";
@@ -8,13 +9,21 @@ import aesculus2 from "../aesculus_hippocastanum_2.jpg";
 import aesculus3 from "../aesculus_hippocastanum_3.jpg";
 
 function PlantShowcase(props) {
-  const renderAttribute = (key) => {
+  const findHeaderById = (_id) => {
+    var head = Object.values(ColumnsTemplate).find((e) => e.id == _id);
+    return head.Header;
+  };
+
+  const renderAttribute = (key, data) => {
     if (key === "description" || key === "_id") return;
     return (
-      <p key={key}>
-        {key}:
+      <div className="keyValueText" key={key}>
+        {" "}
+        <span key={key} className="plantHeader">
+          {findHeaderById(key)}:
+        </span>
         <span className="plantValue">{PlantToString(props.data, key)}</span>
-      </p>
+      </div>
     );
   };
 

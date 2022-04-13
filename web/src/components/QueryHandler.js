@@ -5,7 +5,7 @@ let queryData = {
     _id
     botanical_name
     danish_name
-   foliage
+    foliage
     fruit
     flowers
     poisonous

@@ -1,26 +1,27 @@
 .tableOptionsContainer{
-    width: var(--size-data-width);
+    width: 100%;
     display: flex;
     flex: 1;
     flex-direction: column;
+    margin-top: 2rem;
 }
 
 .tableOptionsContainer span{
     color: var(--clr-text-900);
 }
 
-.tableOptionsContainer button{
-    background-color: white;
-    border: none;
-    color: var(--clr-ineractive-200);
-    padding: none;
-    height: 100%;
-}
 .buttonContainer{
     flex:1;
     display: flex;
     float:right;
     justify-content: end;
+}
+.buttonContainer button,.checkBox button{
+    background-color: white;
+    border: none;
+    color: var(--clr-ineractive-200);
+    padding: none;
+    height: 100%;
 }
 .checkBox{
     width: 13rem;
@@ -34,5 +35,25 @@
 
 .checkBoxContainer{
     margin: 1rem 2rem 0 2rem;
-    background-color: blue;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(15rem,1fr));
+}
+.updateTableButtonContainer{
+    flex: 1;
+    display: flex;
+    justify-content: end;
+}
+
+.updateTableButtonContainer button{
+    padding: 0 2rem 0 2rem;
+}
+.tableOptionsContainer hr{
+    width: 100%;
+    height: 0.1rem;
+    background-color: var(--clr-ineractive-200);
+    border:none;
+}
+
+.buttonContainer span{
+    margin-right: 1rem;
 }

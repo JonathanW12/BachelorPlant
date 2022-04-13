@@ -87,7 +87,7 @@ export const ColumnsTemplate = [
   },
   {
     id: "ph_tolerance",
-    Header: "ph",
+    Header: "ph tolerance",
     accessor: (d) => {
       return d.ph_tolerance.ph_min + " - " + d.ph_tolerance.ph_max + " ph";
     },

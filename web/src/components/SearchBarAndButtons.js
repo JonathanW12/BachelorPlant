@@ -32,7 +32,7 @@ function SearchBarAndButtons(props) {
       <div className="filterButton">
         <CustomButton
           title="Søg med filtre"
-          onClick={() => props._setFilterOpen(true)}
+          onClick={() => props._setFilterOpen(!props._filterOpen)}
         ></CustomButton>
       </div>
     </div>

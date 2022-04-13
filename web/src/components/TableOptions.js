@@ -6,7 +6,11 @@ import {
   faSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import "../css/TableOptions.css";
-import { returnFields } from "../QueryData";
+import {
+  returnFields,
+  getActiveHeaderFields,
+  getActiveHeaders,
+} from "../QueryData";
 import { ColumnsTemplate } from "./ColumnsTemplate";
 
 function TableOptions(props) {
@@ -24,6 +28,7 @@ function TableOptions(props) {
           onClick={() => {
             label.active = !label.active;
             forceUpdate();
+            props._setHiddenColumns(getActiveHeaders());
           }}
         >
           <span>{findHeaderById(key)}</span>
@@ -45,9 +50,9 @@ function TableOptions(props) {
           onClick={() => setShowingColumns(!showingColumns)}
         >
           {showingColumns ? (
-            <span>Skjul filtermuligheder</span>
+            <span>Skjul tabelmuligheder</span>
           ) : (
-            <span>Vis filtermuligheder</span>
+            <span>Vis tabelmuligheder</span>
           )}
           {
             <FontAwesomeIcon
@@ -57,25 +62,35 @@ function TableOptions(props) {
           }
         </button>
       </div>
-      <div className="checkBoxContainer">
-        {checkBoxComponent("danish_name", returnFields.danish_name)}
-        {checkBoxComponent("site", returnFields.site)}
-        {checkBoxComponent("size_height", returnFields.size_height)}
-        {checkBoxComponent("size_spread", returnFields.size_spread)}
-        {checkBoxComponent("poisonous", returnFields.poisonous)}
-        {checkBoxComponent("plant_type", returnFields.plant_type)}
-        {checkBoxComponent("fruit", returnFields.fruit)}
-        {checkBoxComponent(
-          "water_prefferences",
-          returnFields.water_prefferences
-        )}
-        {checkBoxComponent("flowers", returnFields.flowers)}
-        {checkBoxComponent("root_system", returnFields.root_system)}
-        {checkBoxComponent("ph_tolerance", returnFields.ph_tolerance)}
-        {checkBoxComponent("soil_types", returnFields.soil_types)}
-        {checkBoxComponent("wind_tolerance", returnFields.wind_tolerance)}
-        {checkBoxComponent("salt_tolerance", returnFields.salt_tolerance)}
-      </div>
+      {showingColumns && (
+        <div>
+          <div className="checkBoxContainer">
+            {checkBoxComponent("danish_name", returnFields.danish_name)}
+            {checkBoxComponent("site", returnFields.site)}
+            {checkBoxComponent("wind_tolerance", returnFields.wind_tolerance)}
+            {checkBoxComponent("size_spread", returnFields.size_spread)}
+            {checkBoxComponent("poisonous", returnFields.poisonous)}
+            {checkBoxComponent("plant_type", returnFields.plant_type)}
+            {checkBoxComponent("fruit", returnFields.fruit)}
+            {checkBoxComponent(
+              "water_prefferences",
+              returnFields.water_prefferences
+            )}
+            {checkBoxComponent("flowers", returnFields.flowers)}
+            {checkBoxComponent("root_system", returnFields.root_system)}
+            {checkBoxComponent("ph_tolerance", returnFields.ph_tolerance)}
+            {checkBoxComponent("soil_types", returnFields.soil_types)}
+            {checkBoxComponent("size_height", returnFields.size_height)}
+            {checkBoxComponent("salt_tolerance", returnFields.salt_tolerance)}
+          </div>
+          <div className="updateTableButtonContainer">
+            <button onClick={() => setShowingColumns(!showingColumns)}>
+              Opdater tabel
+            </button>
+          </div>
+        </div>
+      )}
+      <hr />
     </div>
   );
 }

@@ -20,7 +20,10 @@
     box-sizing: border-box;
     border-color: var(--clr-border-400);
     border-radius: 1rem;
-    height: 90vh;
+    max-height: 90vh;
+    margin-left:2rem;
+    min-width: 24rem;
+    overflow: hidden;
   }
  .singlePlant h1{
      margin-top: 0;
@@ -44,7 +47,17 @@
 }
 .plantValue{
     font-style:italic;
+    flex: 1.5;  
+}
+
+.plantHeader{
+    flex:1;
 }
 ._description{
     margin-bottom: 1.5rem;
+}
+
+.keyValueText{
+    display: flex;
+    margin-bottom: 0.3rem;
 }

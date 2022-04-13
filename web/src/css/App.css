@@ -43,15 +43,13 @@
 
 .dataContainer{
   box-sizing: border-box;
-  width: var(--size-data-width);
+  width: 100%;
   overflow-x:auto;
   overflow-y: auto;
-  margin-top: 2rem;
+  margin-top: 0rem;
   height: 75vh;
   text-align: left;
   word-break: break-all;
-  margin-right: 1rem;
-  padding-right: 2rem;
 }
 
 img{
@@ -61,6 +59,12 @@ img{
 
 .filterOptions{
   height: 85vh;
-  width: var(--size-data-width);
+  width: 100%;
   background-color: lightcoral;
+}
+
+.searchAndData{
+  min-width: var(--size-data-width);
+  width: 100%;
+  margin-right: 0rem;
 }

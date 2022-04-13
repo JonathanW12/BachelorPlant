@@ -6,22 +6,22 @@ import React, { useState } from "react";
 import { acer_dividii } from "./testData";
 import { getPlantById, getAllPlantData } from "./components/QueryHandler";
 import SearchBarAndButtons from "./components/SearchBarAndButtons";
-import { Search } from "@mui/icons-material";
 import TableOptions from "./components/TableOptions";
+import useWindowDimensions from "./components/WindowSize";
+import { returnFields, getActiveHeaders } from "./QueryData";
 
 function App() {
   //Selected plant
   const [activePlant, setActivePlant] = useState(acer_dividii);
   async function updateActivePlant(id) {
     const res = await getPlantById(id);
-    console.log("res is: " + res);
     setActivePlant(res);
   }
   //Plant data
   const [tableData, setTableData] = useState([]);
+  const [hiddenColumns, setHiddenColumns] = useState(getActiveHeaders());
   async function updateTableData() {
     const res = await getAllPlantData();
-    console.log(res);
     setTableData(res);
   }
   //Filtering
@@ -32,19 +32,28 @@ function App() {
         <SearchBarAndButtons
           _setTableData={setTableData}
           _setFilterOpen={setFilterOpen}
+          _filterOpen={filterOpen}
         />
         {filterOpen && (
           <div className="filterOptions">
             <SearchOptions />
           </div>
         )}
+        <TableOptions
+          _setTableData={setTableData}
+          _setHiddenColumns={setHiddenColumns}
+        />
         <div className="dataContainer">
-          <TableOptions />
-          <PlantTable tData={tableData} activeP={setActivePlant} />
+          <PlantTable
+            tData={tableData}
+            activeP={setActivePlant}
+            _hiddenColumns={hiddenColumns}
+          />
         </div>
       </div>
-      <hr />
-      <PlantShowcase data={activePlant} />
+      {useWindowDimensions().width > 1450 && (
+        <PlantShowcase data={activePlant} />
+      )}
     </div>
   );
 }
