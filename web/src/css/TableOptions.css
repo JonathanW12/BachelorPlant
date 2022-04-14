@@ -47,12 +47,6 @@
 .updateTableButtonContainer button{
     padding: 0 2rem 0 2rem;
 }
-.tableOptionsContainer hr{
-    width: 100%;
-    height: 0.1rem;
-    background-color: var(--clr-ineractive-200);
-    border:none;
-}
 
 .buttonContainer span{
     margin-right: 1rem;

@@ -5,10 +5,12 @@ import "../css/SearchBarAndButtons.css";
 
 function SearchBarAndButtons(props) {
   const [input, setInput] = useState("");
+
   async function updateTableByName(input_name) {
     const res = await getPlantsByName(input_name);
     props._setTableData(res);
   }
+
   return (
     <div className="searchBarOuterContainer">
       <div className="searchByNameContainer">
@@ -32,7 +34,9 @@ function SearchBarAndButtons(props) {
       <div className="filterButton">
         <CustomButton
           title="Søg med filtre"
-          onClick={() => props._setFilterOpen(!props._filterOpen)}
+          onClick={() => {
+            props._setFilterOpen(!props._filterOpen);
+          }}
         ></CustomButton>
       </div>
     </div>

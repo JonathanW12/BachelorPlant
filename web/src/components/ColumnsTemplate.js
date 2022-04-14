@@ -1,4 +1,5 @@
 import aesculus2 from "../aesculus_hippocastanum_2.jpg";
+import { PlantToString } from "./PlantToString";
 
 export const ColumnsTemplate = [
   {
@@ -13,7 +14,9 @@ export const ColumnsTemplate = [
   {
     id: "botanical_name",
     Header: "Botanisk navn",
-    accessor: "botanical_name",
+    accessor: (d) => {
+      return PlantToString(d, "botanical_name");
+    },
     Cell: (props) => {
       const { value, cell } = props;
       return (
@@ -26,101 +29,106 @@ export const ColumnsTemplate = [
   {
     id: "danish_name",
     Header: "Dansk navn",
-    accessor: "danish_name",
+    accessor: (d) => {
+      return PlantToString(d, "danish_name");
+    },
   },
   {
     Header: "Frugt",
     id: "fruit",
     accessor: (d) => {
-      return d.fruit ? "Ja" : "Nej";
+      return PlantToString(d, "fruit");
     },
   },
   {
     id: "salt_tolerance",
     Header: "Salt tolerance",
     accessor: (d) => {
-      return d.salt_tolerance ? "Robust" : "Sensitiv";
+      return PlantToString(d, "salt_tolerance");
     },
   },
   {
     id: "flowers",
     Header: "Blomster",
     accessor: (d) => {
-      return d.flowers ? "Ja" : "Nej";
+      return PlantToString(d, "flowers");
     },
   },
   {
     id: "foliage",
     Header: "Foliage",
-    accessor: "foliage",
+    accessor: (d) => {
+      return PlantToString(d, "foliage");
+    },
   },
   {
     id: "soil_types",
     Header: "Jord typer",
-    accessor: "soil_types",
+    accessor: (d) => {
+      return PlantToString(d, "soil_types");
+    },
   },
   {
     id: "poisonous",
     Header: "Giftig",
     accessor: (d) => {
-      return d.poisonous ? "Giftig" : "Ikke";
+      return PlantToString(d, "poisonous");
     },
   },
   {
     id: "site",
     Header: "Sollys",
     accessor: (d) => {
-      return d.site + "/5";
+      return PlantToString(d, "site");
     },
   },
   {
     id: "wind_tolerance",
     Header: "Vind tolerance",
     accessor: (d) => {
-      return d.wind_tolerance + "/3";
+      return PlantToString(d, "wind_tolerance");
     },
   },
   {
     id: "plant_type",
     Header: "Type",
-    accessor: "plant_type",
+    accessor: (d) => {
+      return PlantToString(d, "plant_type");
+    },
   },
   {
     id: "ph_tolerance",
     Header: "ph tolerance",
     accessor: (d) => {
-      return d.ph_tolerance.ph_min + " - " + d.ph_tolerance.ph_max + " ph";
+      return PlantToString(d, "ph_tolerance");
     },
   },
   {
     id: "size_height",
     Header: "Højde",
     accessor: (d) => {
-      return d.size_height.size_min + " - " + d.size_height.size_max + "m";
+      return PlantToString(d, "size_height");
     },
   },
   {
     id: "size_spread",
     Header: "Spredning",
     accessor: (d) => {
-      return d.size_spread.size_min + " - " + d.size_spread.size_max + "m";
+      return PlantToString(d, "size_spread");
     },
   },
   {
     id: "root_system",
     Header: "Rødder",
-    accessor: "root_system",
+    accessor: (d) => {
+      return PlantToString(d, "root_system");
+    },
   },
   {
     id: "water_prefferences",
     Header: "Vand",
     accessor: (d) => {
-      return (
-        d.water_prefferences.water_min +
-        "/5 - " +
-        d.water_prefferences.water_max +
-        "/5"
-      );
+      return PlantToString(d, "water_prefferences");
     },
   },
 ];

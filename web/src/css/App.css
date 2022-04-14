@@ -52,18 +52,29 @@
   word-break: break-all;
 }
 
+hr{
+  width: 100%;
+  height: 0.2rem;
+  background-color: var(--clr-ineractive-200);
+  border:none;
+}
+
 img{
   width: 100%;
   height: auto;
-}
-
-.filterOptions{
-  height: 85vh;
-  width: 100%;
 }
 
 .searchAndData{
   min-width: var(--size-data-width);
   width: 100%;
   margin-right: 0rem;
+}
+
+.reactiveButtonContainer{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.reactiveButtonContainer button{
+  padding: 0 3rem 0 3rem;
 }

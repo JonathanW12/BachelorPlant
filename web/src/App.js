@@ -8,6 +8,7 @@ import {
   getPlantById,
   getAllPlantData,
   getPlantsByArgs,
+  getCountByArgs,
 } from "./components/QueryHandler";
 import SearchBarAndButtons from "./components/SearchBarAndButtons";
 import TableOptions from "./components/TableOptions";
@@ -26,21 +27,22 @@ function App() {
   const [hiddenColumns, setHiddenColumns] = useState(getActiveHeaders());
   const [filterData, setFilterData] = useState(returnFields);
   const [filterResultsAmount, setFilterReultsAmount] = useState(0);
-  async function updateTableData() {
-    const res = await getAllPlantData();
+  const [filterOpen, setFilterOpen] = useState(false);
+
+  async function updateTableDataByArgs() {
+    const res = await getPlantsByArgs(filterData);
     setTableData(res);
   }
 
   useEffect(() => {
     async function updateResultCount() {
-      const res = await getPlantsByArgs(filterData);
-      console.log("count: " + res.length);
+      const res = await getCountByArgs(filterData);
+      setFilterReultsAmount(res);
     }
     updateResultCount();
   }, [filterData]);
 
   //Filtering
-  const [filterOpen, setFilterOpen] = useState(false);
   return (
     <div className="App">
       <div className="searchAndData">
@@ -56,6 +58,17 @@ function App() {
               _filterData={filterData}
               _filterResultsAmount={filterResultsAmount}
             />
+            <div className="reactiveButtonContainer">
+              <button
+                onClick={() => {
+                  updateTableDataByArgs();
+                  setFilterOpen(!filterOpen);
+                }}
+              >
+                Vis {filterResultsAmount} planter
+              </button>
+            </div>
+            <hr></hr>
           </div>
         )}
         <TableOptions

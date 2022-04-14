@@ -165,3 +165,36 @@ export async function getPlantsByArgs(args) {
     });
   return response;
 }
+
+export async function getCountByArgs(args) {
+  const requestQuery = {
+    query: `
+        query {
+          plantsMultipleArgsCount(
+            ${getActiveSearchQuery(args)}, 
+          )
+    }
+    `,
+  };
+
+  const response = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(requestQuery),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (res.status !== 200 && res.status !== 201) {
+        throw new Error("Failed request!");
+      }
+      return res.json();
+    })
+    .then((resData) => {
+      return resData.data.plantsMultipleArgsCount;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return response;
+}

@@ -1,12 +1,14 @@
 .searchOptionsOuterContainer{
-    margin: 2rem;
-    color: var(--clr-text-900);
-    font-size: large;
+  margin: 2rem;
+  color: var(--clr-text-900);
+  font-size: large;
+  min-height: 72vh;
+  width: 100%;
 }
 
 .horizontal-slider {
-    width: 100%;
-    max-width: 20rem;
+  width: 100%;
+  max-width: 20rem;
     height: 3rem;
     margin: auto;
     margin-bottom: 2rem; 
@@ -48,17 +50,17 @@
     height: 0.65rem;
     line-height: 40px;
   }
-
- .thumbText{
-     display: inline;
+  
+  .thumbText{
+    display: inline;
     position: absolute;
-
+    
     margin-top: 0.8rem;
     text-align: center;
     width: 10rem;
     margin-left: -5rem;
   }
-
+  
   .singleSearchOptionContainer{
-      max-width: 21rem;
+    max-width: 21rem;
   }
