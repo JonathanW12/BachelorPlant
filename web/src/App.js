@@ -2,9 +2,13 @@ import "./css/App.css";
 import PlantShowcase from "./components/PlantShowcase";
 import PlantTable from "./components/PlantTable";
 import SearchOptions from "./components/SearchOptions";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { acer_dividii } from "./testData";
-import { getPlantById, getAllPlantData } from "./components/QueryHandler";
+import {
+  getPlantById,
+  getAllPlantData,
+  getPlantsByArgs,
+} from "./components/QueryHandler";
 import SearchBarAndButtons from "./components/SearchBarAndButtons";
 import TableOptions from "./components/TableOptions";
 import useWindowDimensions from "./components/WindowSize";
@@ -20,10 +24,21 @@ function App() {
   //Plant data
   const [tableData, setTableData] = useState([]);
   const [hiddenColumns, setHiddenColumns] = useState(getActiveHeaders());
+  const [filterData, setFilterData] = useState(returnFields);
+  const [filterResultsAmount, setFilterReultsAmount] = useState(0);
   async function updateTableData() {
     const res = await getAllPlantData();
     setTableData(res);
   }
+
+  useEffect(() => {
+    async function updateResultCount() {
+      const res = await getPlantsByArgs(filterData);
+      console.log("count: " + res.length);
+    }
+    updateResultCount();
+  }, [filterData]);
+
   //Filtering
   const [filterOpen, setFilterOpen] = useState(false);
   return (
@@ -36,7 +51,11 @@ function App() {
         />
         {filterOpen && (
           <div className="filterOptions">
-            <SearchOptions />
+            <SearchOptions
+              _setFilterData={setFilterData}
+              _filterData={filterData}
+              _filterResultsAmount={filterResultsAmount}
+            />
           </div>
         )}
         <TableOptions

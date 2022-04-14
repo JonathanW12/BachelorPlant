@@ -1,0 +1,64 @@
+.searchOptionsOuterContainer{
+    margin: 2rem;
+    color: var(--clr-text-900);
+    font-size: large;
+}
+
+.horizontal-slider {
+    width: 100%;
+    max-width: 20rem;
+    height: 3rem;
+    margin: auto;
+    margin-bottom: 2rem; 
+  }
+  .example-thumb {
+    cursor: pointer;
+    position: absolute;
+    z-index: 100;
+    background: var(--clr-border-400);
+    border: 0.25rem solid var(--clr-border-400);
+    border-radius: 100%;
+    display: block;
+  } 
+  .example-thumb.active {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+  .example-track {
+    position: relative;
+    background: #ddd;
+  }
+  .example-track.example-track-0 {
+    background: var(--clr-ineractive-200);
+  }
+  .example-track.example-track-1 {
+    background: var(--clr-border-400);
+  }
+  .example-track.example-track-2 {
+    background: var(--clr-ineractive-200);
+  }
+  .horizontal-slider .example-track {
+    top: 1.5rem;
+    height: 0.15rem;
+  }
+  .horizontal-slider .example-thumb {
+    top: 0.95rem;
+    width: 0.65rem;
+    outline: none;
+    height: 0.65rem;
+    line-height: 40px;
+  }
+
+ .thumbText{
+     display: inline;
+    position: absolute;
+
+    margin-top: 0.8rem;
+    text-align: center;
+    width: 10rem;
+    margin-left: -5rem;
+  }
+
+  .singleSearchOptionContainer{
+      max-width: 21rem;
+  }

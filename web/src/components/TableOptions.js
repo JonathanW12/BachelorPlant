@@ -6,11 +6,7 @@ import {
   faSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import "../css/TableOptions.css";
-import {
-  returnFields,
-  getActiveHeaderFields,
-  getActiveHeaders,
-} from "../QueryData";
+import { returnFields, getActiveHeaders } from "../QueryData";
 import { ColumnsTemplate } from "./ColumnsTemplate";
 
 function TableOptions(props) {
