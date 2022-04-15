@@ -116,6 +116,7 @@ app.use(
         singlePlant(_id:ID!):Plant!
         plantByName(input_name:String!):[Plant!]
         plantsMultipleArgs(
+          input_easteregg:String,
           input_wind:WindInput,
           input_height:HeightInput,
           input_ph:PhInput,
@@ -130,6 +131,22 @@ app.use(
           input_type: [String],
           input_soil: [String],
           ):[Plant!]
+        plantsMultipleArgsCount(
+          input_easteregg:String,
+          input_wind:WindInput,
+          input_height:HeightInput,
+          input_ph:PhInput,
+          input_spread:SpreadInput,
+          input_water:WaterInput
+          input_site:SiteInput,
+          input_poisonous:Boolean,
+          input_salt: Boolean,
+          input_flowers: Boolean,
+          input_fruit: Boolean,
+          input_root: [String],
+          input_type: [String],
+          input_soil: [String],
+          ):Int
     }
 
     type RootMutation{
@@ -177,11 +194,23 @@ app.use(
 
         var searchObj = {
           $and: Object.keys(newArgs).map((e) => {
-            console.log("element is: " + e);
             return keyToSearchString.keyToSearchString(newArgs, e);
           }),
         };
-        console.log(searchObj);
+
+        if (searchObj === "") {
+          //handle if empty args
+          return Plant.find()
+            .then((plants) => {
+              return plants.map((plant) => {
+                return { ...plant._doc, _id: plant._id.toString() };
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+
         return Plant.find(searchObj)
           .then((plants) => {
             return plants.map((plant) => {
@@ -191,6 +220,23 @@ app.use(
           .catch((err) => {
             console.log(err);
           });
+      },
+      plantsMultipleArgsCount: (args) => {
+        const newArgs = JSON.parse(JSON.stringify(args));
+
+        var searchObj = {
+          $and: Object.keys(newArgs).map((e) => {
+            return keyToSearchString.keyToSearchString(newArgs, e);
+          }),
+        };
+        console.log("searchopb:" + searchObj);
+        if (searchObj === "") {
+          //handle if empty args
+          return Plant.count();
+        }
+
+        console.log(searchObj);
+        return Plant.count(searchObj);
       },
       createPlant: (args) => {
         const newPlant = new Plant({
