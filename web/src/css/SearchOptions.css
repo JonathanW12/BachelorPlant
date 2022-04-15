@@ -4,6 +4,8 @@
   font-size: large;
   min-height: 72vh;
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(25rem,1fr));
 }
 
 .horizontal-slider {
@@ -12,20 +14,19 @@
     height: 3rem;
     margin: auto;
     margin-bottom: 2rem; 
+  cursor:pointer;
   }
   .example-thumb {
     cursor: pointer;
     position: absolute;
     z-index: 100;
     background: var(--clr-border-400);
-    border: 0.25rem solid var(--clr-border-400);
+    border: 0.2rem solid white;
     border-radius: 100%;
     display: block;
+    width: 0.85rem;
+    height: 0.85rem;
   } 
-  .example-thumb.active {
-    width: 0.8rem;
-    height: 0.8rem;
-  }
   .example-track {
     position: relative;
     background: #ddd;
@@ -45,22 +46,72 @@
   }
   .horizontal-slider .example-thumb {
     top: 0.95rem;
-    width: 0.65rem;
+    width: 0.8rem;
     outline: none;
-    height: 0.65rem;
+    height: 0.8rem;
     line-height: 40px;
   }
   
   .thumbText{
     display: inline;
     position: absolute;
-    
     margin-top: 0.8rem;
     text-align: center;
     width: 10rem;
-    margin-left: -5rem;
+    margin-left: -4.5rem;
+    font-size: medium;
   }
   
   .singleSearchOptionContainer{
+    margin-bottom: 3.5rem;
+    height: 5rem;
+  }
+  .smallSearchOptionsContainer{
+    max-width:9rem;
+  }
+
+  .largeSlidersContainer{
     max-width: 21rem;
   }
+  .stringArray{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -2.5rem;
+  }
+  .stringArray span{
+    font-style: italic;
+    font-size: medium;
+  }
+  
+.example-mark{
+  position: relative;
+    width: 8px;
+    height: 8px;
+    border: 2px solid rgb(255,255,255);
+    background-color: var(--clr-ineractive-200);
+    cursor: pointer;
+    border-radius: 50%;
+    bottom: calc(50% - 7px);
+  }
+
+.checkBoxOptionsContainer button{
+  background-color: white;
+  border: none;
+
+  padding: none;
+  height: 100%;
+  margin-left: -0.25rem;
+}
+.checkBoxOptionsContainer h2{
+  margin-bottom: 1rem;
+}
+.checkBoxOptionsContainer span{
+  font-style: italic;
+}
+
+.checked{
+  color: var(--clr-border-400);
+}
+.unChecked{
+  color: var(--clr-ineractive-200);
+}

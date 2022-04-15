@@ -1,19 +1,29 @@
 import React, { useState } from "react";
 import ReactSlider from "react-slider";
 import "../css/SearchOptions.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlay,
+  faCheckSquare,
+  faSquare,
+} from "@fortawesome/free-solid-svg-icons";
+
+/*
+This file is absolute hell. A straight up nightmare. But it works:)
+*/
 
 function SearchOptions({ _filterData, _setFilterData }) {
   const startingData = { ..._filterData };
 
-  const twoNumberSlider = (min, max, v0, v1, unit, minDist, func) => {
+  const twoNumberSlider = (data, unit, minDist, func) => {
     return (
       <ReactSlider
         className="horizontal-slider"
         thumbClassName="example-thumb"
         trackClassName="example-track"
-        defaultValue={[v0, v1]}
-        min={min}
-        max={max}
+        defaultValue={[data.v0, data.v1]}
+        min={data.min}
+        max={data.max}
         ariaLabel={["Lower thumb", "Upper thumb"]}
         ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
         renderThumb={(props, state) => (
@@ -30,60 +40,74 @@ function SearchOptions({ _filterData, _setFilterData }) {
       />
     );
   };
+  const stringArraySlider = (data, minDist, func, marks) => {
+    return (
+      <ReactSlider
+        className="horizontal-slider"
+        thumbClassName="example-thumb"
+        trackClassName="example-track"
+        defaultValue={[data.v0, data.v1]}
+        min={data.min}
+        max={data.max}
+        ariaLabel={["Lower thumb", "Upper thumb"]}
+        ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+        renderThumb={(props, state) => <div {...props}></div>}
+        minDistance={minDist}
+        onAfterChange={func}
+        pearling
+        marks={marks}
+        markClassName="example-mark"
+      />
+    );
+  };
+  const checkBoxComponent = (data, func) => {
+    return (
+      <div>
+        <button onClick={func}>
+          {data.checked ? (
+            <FontAwesomeIcon className="checked" icon={faCheckSquare} />
+          ) : (
+            <FontAwesomeIcon className="unChecked" icon={faSquare} />
+          )}
+          <span>{data.field}</span>
+        </button>
+      </div>
+    );
+  };
 
   return (
     <div className="searchOptionsOuterContainer">
-      <div className="slidersContainer">
+      <div className="largeSlidersContainer">
         <div className="singleSearchOptionContainer">
-          <span>Højde voksen</span>
-          {twoNumberSlider(
-            startingData.size_height.min,
-            startingData.size_height.max,
-            startingData.size_height.v0,
-            startingData.size_height.v1,
-            "m",
-            2,
-            (val) => {
-              _setFilterData({
-                ..._filterData,
-                size_height: {
-                  ..._filterData.size_height,
-                  v0: val[0],
-                  v1: val[1],
-                },
-              });
-            }
-          )}
+          <h2>Højde voksen</h2>
+          {twoNumberSlider(startingData.size_height, "m", 2, (val) => {
+            _setFilterData({
+              ..._filterData,
+              size_height: {
+                ..._filterData.size_height,
+                v0: val[0],
+                v1: val[1],
+              },
+            });
+          })}
         </div>
         <div className="singleSearchOptionContainer">
-          <span>Bredde voksen</span>
-          {twoNumberSlider(
-            startingData.size_spread.min,
-            startingData.size_spread.max,
-            startingData.size_spread.v0,
-            startingData.size_spread.v1,
-            "m",
-            2,
-            (val) => {
-              _setFilterData({
-                ..._filterData,
-                size_spread: {
-                  ..._filterData.size_spread,
-                  v0: val[0],
-                  v1: val[1],
-                },
-              });
-            }
-          )}
+          <h2>Bredde voksen</h2>
+          {twoNumberSlider(startingData.size_spread, "m", 2, (val) => {
+            _setFilterData({
+              ..._filterData,
+              size_spread: {
+                ..._filterData.size_spread,
+                v0: val[0],
+                v1: val[1],
+              },
+            });
+          })}
         </div>
         <div className="singleSearchOptionContainer">
-          <span>Vandforbrug</span>
-          {twoNumberSlider(
-            startingData.water_prefferences.min,
-            startingData.water_prefferences.max,
-            startingData.water_prefferences.v0,
-            startingData.water_prefferences.v1,
-            "/5",
+          <h2>Vandforbrug</h2>
+          {stringArraySlider(
+            startingData.water_prefferences,
             0,
             (val) => {
               _setFilterData({
@@ -94,17 +118,19 @@ function SearchOptions({ _filterData, _setFilterData }) {
                   v1: val[1],
                 },
               });
-            }
+            },
+            [2, 3, 4]
           )}
+          <div className="stringArray">
+            <span>Tørt</span>
+            <span>Vådt</span>
+          </div>
         </div>
         <div className="singleSearchOptionContainer">
-          <span>Sollys</span>
-          {twoNumberSlider(
-            startingData.site.min,
-            startingData.site.max,
-            startingData.site.v0,
-            startingData.site.v1,
-            "/5",
+          <h2>Sollys</h2>
+          {stringArraySlider(
+            startingData.site,
+
             0,
             (val) => {
               _setFilterData({
@@ -115,38 +141,113 @@ function SearchOptions({ _filterData, _setFilterData }) {
                   v1: val[1],
                 },
               });
-            }
+            },
+            [2, 3, 4]
           )}
+          <div className="stringArray">
+            <span>Skygge</span>
+            <span>Fuld sol</span>
+          </div>
         </div>
         <div className="singleSearchOptionContainer">
-          <span>ph Tolerance</span>
-          {twoNumberSlider(
-            startingData.ph_tolerance.min,
-            startingData.ph_tolerance.max,
-            startingData.ph_tolerance.v0,
-            startingData.ph_tolerance.v1,
-            " ph",
-            0,
-            (val) => {
-              _setFilterData({
-                ..._filterData,
-                ph_tolerance: {
-                  ..._filterData.ph_tolerance,
-                  v0: val[0],
-                  v1: val[1],
+          <h2>ph Tolerance</h2>
+          {twoNumberSlider(startingData.ph_tolerance, " ph", 0, (val) => {
+            _setFilterData({
+              ..._filterData,
+              ph_tolerance: {
+                ..._filterData.ph_tolerance,
+                v0: val[0],
+                v1: val[1],
+              },
+            });
+          })}
+        </div>
+      </div>
+      <div className="checkBoxOptionsContainer">
+        <div className="singleSearchOptionContainer">
+          <h2>Type</h2>
+          {checkBoxComponent(startingData.plant_type.v0.træ, () => {
+            _setFilterData({
+              ..._filterData,
+              plant_type: {
+                ..._filterData.plant_type,
+                v0: {
+                  ..._filterData.plant_type.v0,
+                  træ: {
+                    ..._filterData.plant_type.v0.træ,
+                    checked: !_filterData.plant_type.v0.træ.checked,
+                  },
                 },
-              });
-            }
-          )}
+              },
+            });
+          })}
+          {checkBoxComponent(startingData.plant_type.v0.busk, () => {
+            _setFilterData({
+              ..._filterData,
+              plant_type: {
+                ..._filterData.plant_type,
+                v0: {
+                  ..._filterData.plant_type.v0,
+                  busk: {
+                    ..._filterData.plant_type.v0.busk,
+                    checked: !_filterData.plant_type.v0.busk.checked,
+                  },
+                },
+              },
+            });
+          })}
+          {checkBoxComponent(startingData.plant_type.v0.slyng_plante, () => {
+            _setFilterData({
+              ..._filterData,
+              plant_type: {
+                ..._filterData.plant_type,
+                v0: {
+                  ..._filterData.plant_type.v0,
+                  slyng_plante: {
+                    ..._filterData.plant_type.v0.slyng_plante,
+                    checked: !_filterData.plant_type.v0.slyng_plante.checked,
+                  },
+                },
+              },
+            });
+          })}
+          {checkBoxComponent(startingData.plant_type.v0.gras, () => {
+            _setFilterData({
+              ..._filterData,
+              plant_type: {
+                ..._filterData.plant_type,
+                v0: {
+                  ..._filterData.plant_type.v0,
+                  gras: {
+                    ..._filterData.plant_type.v0.gras,
+                    checked: !_filterData.plant_type.v0.gras.checked,
+                  },
+                },
+              },
+            });
+          })}
+          {checkBoxComponent(startingData.plant_type.v0.urt, () => {
+            _setFilterData({
+              ..._filterData,
+              plant_type: {
+                ..._filterData.plant_type,
+                v0: {
+                  ..._filterData.plant_type.v0,
+                  urt: {
+                    ..._filterData.plant_type.v0.urt,
+                    checked: !_filterData.plant_type.v0.urt.checked,
+                  },
+                },
+              },
+            });
+          })}
         </div>
+      </div>
+      <div className="smallSearchOptionsContainer">
         <div className="singleSearchOptionContainer">
-          <span>Vind tolerance</span>
-          {twoNumberSlider(
-            startingData.wind_tolerance.min,
-            startingData.wind_tolerance.max,
-            startingData.wind_tolerance.v0,
-            startingData.wind_tolerance.v1,
-            "/3",
+          <h2>Vind tolerance</h2>
+          {stringArraySlider(
+            startingData.wind_tolerance,
             0,
             (val) => {
               _setFilterData({
@@ -157,8 +258,102 @@ function SearchOptions({ _filterData, _setFilterData }) {
                   v1: val[1],
                 },
               });
-            }
+            },
+            [2]
           )}
+          <div className="stringArray">
+            <span>Sensitiv</span>
+            <span>Robust</span>
+          </div>
+        </div>
+
+        <div className="singleSearchOptionContainer">
+          <h2>Frugt</h2>
+          {stringArraySlider(
+            startingData.fruit,
+            0,
+            (val) => {
+              _setFilterData({
+                ..._filterData,
+                fruit: {
+                  ..._filterData.fruit,
+                  v0: val[0],
+                  v1: val[1],
+                },
+              });
+            },
+            []
+          )}
+          <div className="stringArray">
+            <span>Ingen</span>
+            <span>Ja</span>
+          </div>
+        </div>
+        <div className="singleSearchOptionContainer">
+          <h2>Blomster</h2>
+          {stringArraySlider(
+            startingData.flowers,
+            0,
+            (val) => {
+              _setFilterData({
+                ..._filterData,
+                flowers: {
+                  ..._filterData.flowers,
+                  v0: val[0],
+                  v1: val[1],
+                },
+              });
+            },
+            []
+          )}
+          <div className="stringArray">
+            <span>Ingen</span>
+            <span>Ja</span>
+          </div>
+        </div>
+        <div className="singleSearchOptionContainer">
+          <h2>Salt tolerance</h2>
+          {stringArraySlider(
+            startingData.salt_tolerance,
+            0,
+            (val) => {
+              _setFilterData({
+                ..._filterData,
+                salt_tolerance: {
+                  ..._filterData.salt_tolerance,
+                  v0: val[0],
+                  v1: val[1],
+                },
+              });
+            },
+            []
+          )}
+          <div className="stringArray">
+            <span>Sensitiv</span>
+            <span>Robust</span>
+          </div>
+          <div className="singleSearchOptionContainer">
+            <h2>Giftig</h2>
+            {stringArraySlider(
+              startingData.poisonous,
+              0,
+              (val) => {
+                _setFilterData({
+                  ..._filterData,
+                  poisonous: {
+                    ..._filterData.poisonous,
+                    v0: val[0],
+                    v1: val[1],
+                  },
+                });
+              },
+              []
+            )}
+            <div className="stringArray">
+              <span>Ikke giftig</span>
+              <span>Kan være giftig</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

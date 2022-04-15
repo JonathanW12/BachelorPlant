@@ -176,7 +176,7 @@ export async function getCountByArgs(args) {
     }
     `,
   };
-
+  console.log(requestQuery.query);
   const response = await fetch(url, {
     method: "POST",
     body: JSON.stringify(requestQuery),

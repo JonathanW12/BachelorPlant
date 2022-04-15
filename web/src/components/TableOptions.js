@@ -13,7 +13,7 @@ function TableOptions(props) {
   const [showingColumns, setShowingColumns] = useState(false);
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
   const findHeaderById = (_id) => {
-    var head = Object.values(ColumnsTemplate).find((e) => e.id == _id);
+    var head = Object.values(ColumnsTemplate).find((e) => e.id === _id);
     return head.Header;
   };
 
@@ -29,9 +29,9 @@ function TableOptions(props) {
         >
           <span>{findHeaderById(key)}</span>
           {label.active ? (
-            <FontAwesomeIcon icon={faCheckSquare} />
+            <FontAwesomeIcon className="checked" icon={faCheckSquare} />
           ) : (
-            <FontAwesomeIcon icon={faSquare} />
+            <FontAwesomeIcon className="unChecked" icon={faSquare} />
           )}
         </button>
       </div>

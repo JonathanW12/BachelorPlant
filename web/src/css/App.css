@@ -78,3 +78,8 @@ img{
 .reactiveButtonContainer button{
   padding: 0 3rem 0 3rem;
 }
+h2{
+  font-size: large;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}

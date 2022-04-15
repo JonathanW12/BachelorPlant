@@ -51,3 +51,9 @@
 .buttonContainer span{
     margin-right: 1rem;
 }
+.checked{
+    color: var(--clr-border-400);
+  }
+.unChecked{
+color: var(--clr-ineractive-200);
+}
