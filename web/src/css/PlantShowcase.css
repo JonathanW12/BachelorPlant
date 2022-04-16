@@ -36,12 +36,17 @@
 .plantShowcaseImageContainer{
     display: flex;
     flex-direction: row;
+    max-height: 10rem;
+    width: 100%;
 }
+
 .plantShowcaseImageContainer img{
-    max-width: 100%;
     min-width: 40%;
     border-radius: 1rem;
+    max-width: 100%;
+max-height: 100%;
 }
+
 .botanicalName{
     font-style: italic;
 }
@@ -60,4 +65,16 @@
 .keyValueText{
     display: flex;
     margin-bottom: 0.3rem;
+}
+
+.firstPictureContainer{
+ max-height: 20rem;
+ width: 100%;
+ overflow: hidden;
+}
+
+.firstPictureContainer img{
+max-width: 100%;
+max-height: 100%;
+object-fit: contain;
 }

@@ -1,5 +1,7 @@
 export const PlantToString = (data, feature) => {
   switch (feature) {
+    case "pictures":
+      return "";
     case "flowers":
       return data.flowers ? "Ja" : "Ingen";
     case "ph_tolerance":
@@ -23,7 +25,7 @@ export const PlantToString = (data, feature) => {
       );
     case "botanical_name":
       var tempName = data.botanical_name;
-      tempName = tempName.charAt(0).toUpperCase() + tempName.slice(1)
+      tempName = tempName.charAt(0).toUpperCase() + tempName.slice(1);
       return tempName;
     case "danish_name":
       return data.danish_name;

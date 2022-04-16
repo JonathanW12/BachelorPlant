@@ -30,16 +30,20 @@ function PlantShowcase(props) {
 
   const renderRemainingImages = (d) => {
     for (let index = 1; index < d.length; index++) {
-      return <CustomImage props={d[index]} />;
+      return <CustomImage className="bottomPictures" props={d[index]} />;
     }
   };
 
   return (
     <div className="singlePlant">
-      <CustomImage props={props.data.pictures[0]} />
+      <div className="firstPictureContainer">
+        <CustomImage props={props.data.pictures[0]} />
+      </div>
       <div className="innerPlantShowcaseContainer">
-        <h1 className="botanicalName">{props.data.botanical_name}</h1>
-        <h1>{props.data.danish_name}</h1>
+        <h1 className="botanicalName">
+          {PlantToString(props.data, "botanical_name")}
+        </h1>
+        <h1>{PlantToString(props.data, "danish_name")}</h1>
         <p className="_description">{props.data.description}</p>
         <div className="plantAtt">
           {Object.keys(props.data).map((key, value) =>
