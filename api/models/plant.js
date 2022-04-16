@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const picSchema = new Schema({
+  url: String,
+  tag: String,
+  origin: String,
+});
+
 const plantSchema = new Schema({
   botanical_name: {
     type: String,
@@ -40,6 +46,7 @@ const plantSchema = new Schema({
     max: 3,
   },
   description: String,
+  pictures: [picSchema],
 });
 
 module.exports = mongoose.model("Plant", plantSchema);

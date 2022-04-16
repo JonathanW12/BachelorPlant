@@ -1,8 +1,5 @@
 function keyToSearchString(args, key) {
   var searchString = {
-    // plant_type: {},
-    // root_system: {},
-    // soil_types: {},
     default: "",
   };
 
@@ -186,7 +183,7 @@ const setRoot = (searchString, args) => {
     if (args.input_root) {
       searchString.input_root = {
         root_system: {
-          $all: args.input_root,
+          $in: args.input_root,
         },
       };
     }
@@ -197,7 +194,7 @@ const setPlantType = (searchString, args) => {
     if (args.input_type) {
       searchString.input_type = {
         plant_type: {
-          $all: args.input_type,
+          $in: args.input_type,
         },
       };
     }
@@ -208,7 +205,7 @@ const setSoil = (searchString, args) => {
     if (args.input_soil) {
       searchString.input_soil = {
         soil_types: {
-          $all: args.input_soil,
+          $in: args.input_soil,
         },
       };
     }

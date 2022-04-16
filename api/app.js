@@ -43,6 +43,11 @@ app.use(
       ph_min: Int,
       ph_max: Int,
     }
+    type Picture{
+      url: String,
+      tag: String,
+      origin: String,
+    }
 
     input WaterInput{
       water_min:Int,
@@ -88,7 +93,8 @@ app.use(
       water_prefferences: Water_Prefferences,
       size_height: Size_Height,
       size_spread: Size_Spread,
-      ph_tolerance: Ph_Tolerance
+      ph_tolerance: Ph_Tolerance,
+      pictures: [Picture],
     }
 
     input PlantInput{
@@ -198,7 +204,7 @@ app.use(
           }),
         };
 
-        if (searchObj === "") {
+        if (searchObj.$and[0] === "") {
           //handle if empty args
           return Plant.find()
             .then((plants) => {
@@ -229,13 +235,10 @@ app.use(
             return keyToSearchString.keyToSearchString(newArgs, e);
           }),
         };
-        console.log("searchopb:" + searchObj);
-        if (searchObj === "") {
+        if (searchObj.$and[0] === "") {
           //handle if empty args
           return Plant.count();
         }
-
-        console.log(searchObj);
         return Plant.count(searchObj);
       },
       createPlant: (args) => {
