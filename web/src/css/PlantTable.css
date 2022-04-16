@@ -34,6 +34,7 @@ thead{
 .testRow{
     background-color: green;
     width: 100%;
+
 }
 tbody td{
     border-style: outset;
@@ -47,10 +48,14 @@ tbody img{
     border-radius: var(--radius-table-row) 0 0 var(--radius-table-row);
     height: 100%;
     width: auto;
+    max-height: 6rem;
+    border: none;
+    margin-bottom: -4px;
 }
 tbody td:first-child {
     border-radius: var(--radius-table-row) 0 0 var(--radius-table-row);
     border-width: var(--size-border-unselected) 0 var(--size-border-unselected) var(--size-border-unselected);
+    max-height: 4rem;
   }
 tbody td:last-child {
     border-radius: 0 var(--radius-table-row) var(--radius-table-row) 0;

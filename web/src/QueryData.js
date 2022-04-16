@@ -46,7 +46,7 @@ const returnFields = {
     min: 1,
     max: 5,
     v0: 2,
-    v1: 4,
+    v1: 5,
   },
   size_height: { active: true, min: 0, max: 50, v0: 2, v1: 28 },
   size_spread: { active: false, min: 0, max: 30, v0: 0, v1: 30 },
@@ -218,8 +218,11 @@ const getActiveSearchQuery = (returnFields) => {
         return undefined;
     }
   });
-
-  return ids.filter(Boolean).join();
+  ids = ids.filter(Boolean).join();
+  if (ids === "") {
+    ids = `input_easteregg:"test"`;
+  }
+  return ids;
 };
 module.exports = {
   returnFields,

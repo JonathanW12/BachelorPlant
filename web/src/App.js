@@ -17,11 +17,11 @@ import { returnFields, getActiveHeaders } from "./QueryData";
 
 function App() {
   //Selected plant
-  const [activePlant, setActivePlant] = useState(acer_dividii);
-  async function updateActivePlant(id) {
-    const res = await getPlantById(id);
-    setActivePlant(res);
+  async function setInitialPlant() {
+    const res = await getPlantById("6241852e3007c66194b1b743");
+    return res;
   }
+  const [activePlant, setActivePlant] = useState(acer_dividii);
   //Plant data
   const [tableData, setTableData] = useState([]);
   const [hiddenColumns, setHiddenColumns] = useState(getActiveHeaders());
@@ -57,6 +57,7 @@ function App() {
               _setFilterData={setFilterData}
               _filterData={filterData}
               _filterResultsAmount={filterResultsAmount}
+              _filterOpen={filterOpen}
             />
             <div className="reactiveButtonContainer">
               <button

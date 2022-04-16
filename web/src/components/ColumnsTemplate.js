@@ -1,15 +1,18 @@
 import aesculus2 from "../aesculus_hippocastanum_2.jpg";
 import { PlantToString } from "./PlantToString";
+import CustomImage from "./CustomImage";
 
 export const ColumnsTemplate = [
   {
-    id: "picture",
+    id: "pictures",
     Header: "Photo",
-    Cell: (props) => (
-      <div className="imageHolder">
-        <img src={aesculus2} width={60} alt="Billede utilgængeligt" />
-      </div>
-    ),
+    accessor: (d) => {
+      return d.pictures[0];
+    },
+    Cell: (props) => {
+      const { value, cell } = props;
+      return <CustomImage props={value} />;
+    },
   },
   {
     id: "botanical_name",

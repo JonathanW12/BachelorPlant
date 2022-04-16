@@ -1,11 +1,13 @@
 .searchOptionsOuterContainer{
-  margin: 2rem;
+  padding: 2rem;
   color: var(--clr-text-900);
   font-size: large;
   min-height: 72vh;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(25rem,1fr));
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem 4rem;
 }
 
 .horizontal-slider {
@@ -63,16 +65,29 @@
   }
   
   .singleSearchOptionContainer{
-    margin-bottom: 3.5rem;
-    height: 5rem;
+    margin-bottom: 2.5rem;
   }
   .smallSearchOptionsContainer{
-    max-width:9rem;
+    min-width:9rem;
+    max-width: 10rem;
+    min-height: 7rem;
+    flex: 1;
   }
 
   .largeSlidersContainer{
-    max-width: 21rem;
+    min-width: 18rem;
+    max-width: 20rem;
+    min-height: 7rem;
+    flex: 3;
   }
+.checkBoxOptionsContainer{
+  width: 100%;
+  min-width: 8rem;  
+  max-width: 11rem;
+  height: 100%;
+  flex:1;
+}
+
   .stringArray{
     display: flex;
     justify-content: space-between;
@@ -97,16 +112,19 @@
 .checkBoxOptionsContainer button{
   background-color: white;
   border: none;
-
   padding: none;
   height: 100%;
   margin-left: -0.25rem;
+  width: max-content;
+  text-align: start;
 }
 .checkBoxOptionsContainer h2{
   margin-bottom: 1rem;
 }
 .checkBoxOptionsContainer span{
   font-style: italic;
+  margin-left: 0.5rem;
+
 }
 
 .checked{

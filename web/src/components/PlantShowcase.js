@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { PlantToString } from "./PlantToString";
 import "../css/PlantShowcase.css";
 import { ColumnsTemplate } from "./ColumnsTemplate";
+import CustomImage from "./CustomImage";
 
 //temp
 import aesculus1 from "../aesculus_hippocastanum_fall.jpg";
@@ -15,7 +16,7 @@ function PlantShowcase(props) {
   };
 
   const renderAttribute = (key, data) => {
-    if (key === "description" || key === "_id") return;
+    if (key === "description" || key === "_id" || key === "pictures") return;
     return (
       <div className="keyValueText" key={key}>
         {" "}
@@ -27,9 +28,15 @@ function PlantShowcase(props) {
     );
   };
 
+  const renderRemainingImages = (d) => {
+    for (let index = 1; index < d.length; index++) {
+      return <CustomImage props={d[index]} />;
+    }
+  };
+
   return (
     <div className="singlePlant">
-      <img src={aesculus1} alt="test" />
+      <CustomImage props={props.data.pictures[0]} />
       <div className="innerPlantShowcaseContainer">
         <h1 className="botanicalName">{props.data.botanical_name}</h1>
         <h1>{props.data.danish_name}</h1>
@@ -40,8 +47,7 @@ function PlantShowcase(props) {
           )}
         </div>
         <div className="plantShowcaseImageContainer">
-          <img src={aesculus2} alt="test" />
-          <img src={aesculus3} alt="test" />
+          {renderRemainingImages(props.data.pictures)}
         </div>
       </div>
     </div>

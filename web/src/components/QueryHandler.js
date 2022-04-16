@@ -32,7 +32,12 @@ let queryData = {
     ph_tolerance {
       ph_min
       ph_max
-    }     
+    }
+    pictures{
+      url,
+      tag,
+      origin,
+    }
     `,
 };
 export async function getPlantById(_id) {
@@ -176,7 +181,6 @@ export async function getCountByArgs(args) {
     }
     `,
   };
-  console.log(requestQuery.query);
   const response = await fetch(url, {
     method: "POST",
     body: JSON.stringify(requestQuery),

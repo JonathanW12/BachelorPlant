@@ -25,19 +25,23 @@ function SearchBarAndButtons(props) {
           }
         ></input>
         <div className="nameButton">
-          <CustomButton
+          <button
+            style={{ backgroundColor: props._filterOpen ? "white" : "#BBCF97" }}
             onClick={() => updateTableByName(input.toLowerCase())}
-            title="Søg med navn"
-          ></CustomButton>
+          >
+            Søg med navn
+          </button>
         </div>
       </div>
       <div className="filterButton">
-        <CustomButton
-          title="Søg med filtre"
+        <button
+          style={{ backgroundColor: props._filterOpen ? "white" : "#BBCF97" }}
           onClick={() => {
             props._setFilterOpen(!props._filterOpen);
           }}
-        ></CustomButton>
+        >
+          {props._filterOpen ? "Luk filtermuligheder" : "Søg med filtre"}
+        </button>
       </div>
     </div>
   );
