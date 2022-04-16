@@ -73,7 +73,11 @@ app.use(
       site_max:Int,
       site_min:Int,
     }
-
+    input PictureInput{
+      url:String,
+      tag:String,
+      origin:String,
+    }
 
     type Plant{
       _id: ID!,
@@ -115,6 +119,7 @@ app.use(
         size_height: HeightInput,
         size_spread: SpreadInput,
         ph_tolerance: PhInput,
+        pictures: [PictureInput],
     }
 
     type RootQuery{
@@ -260,6 +265,7 @@ app.use(
           size_height: args.plantInput.size_height,
           size_spread: args.plantInput.size_spread,
           ph_tolerance: args.plantInput.ph_tolerance,
+          pictures: args.plantInput.pictures,
         });
         return newPlant
           .save()
