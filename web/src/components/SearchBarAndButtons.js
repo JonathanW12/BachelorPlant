@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import CustomButton from "../components/CustomButton";
 import { getPlantsByName } from "../components/QueryHandler";
 import "../css/SearchBarAndButtons.css";
+import useWindowDimensions from "./WindowSize";
 
 function SearchBarAndButtons(props) {
   const [input, setInput] = useState("");
@@ -29,7 +29,7 @@ function SearchBarAndButtons(props) {
             style={{ backgroundColor: props._filterOpen ? "white" : "#BBCF97" }}
             onClick={() => updateTableByName(input.toLowerCase())}
           >
-            Søg med navn
+            {useWindowDimensions().width > 1450 ? "Søg med navn" : "Søg"}
           </button>
         </div>
       </div>

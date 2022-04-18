@@ -1,8 +1,8 @@
 import React, { useMemo, useEffect, useReducer } from "react";
 import { useTable } from "react-table";
-import { ColumnsTemplate } from "./ColumnsTemplate";
+import { ColumnsTemplate } from "../data/ColumnsTemplate";
 import "../css/PlantTable.css";
-import { getActiveHeaders } from "../QueryData";
+import { getActiveHeaders } from "../data/QueryData";
 
 function PlantTable({ _hiddenColumns, activeP, tData }) {
   const columns = useMemo(() => ColumnsTemplate, []);
@@ -54,7 +54,10 @@ function PlantTable({ _hiddenColumns, activeP, tData }) {
               return (
                 <tr
                   {...row.getRowProps()}
-                  onClick={() => activeP(row.original)}
+                  onClick={() => {
+                    activeP(row.original);
+                    console.log(JSON.stringify(row.original));
+                  }}
                 >
                   {row.cells.map((cell) => {
                     return (

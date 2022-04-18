@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import ReactSlider from "react-slider";
 import "../css/SearchOptions.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlay,
-  faCheckSquare,
-  faSquare,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheckSquare, faSquare } from "@fortawesome/free-solid-svg-icons";
 
 /*
 This file is absolute hell. A straight up nightmare. But it works:)

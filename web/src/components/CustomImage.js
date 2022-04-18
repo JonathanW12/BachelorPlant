@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import defaultPic from "../undefined_plant_pic.png";
 
 function CustomImage({ props }) {

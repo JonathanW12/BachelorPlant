@@ -3,17 +3,20 @@ import PlantShowcase from "./components/PlantShowcase";
 import PlantTable from "./components/PlantTable";
 import SearchOptions from "./components/SearchOptions";
 import React, { useState, useEffect } from "react";
-import { acer_dividii } from "./testData";
+import { acer_dividii } from "./data/testData";
 import {
   getPlantById,
-  getAllPlantData,
   getPlantsByArgs,
   getCountByArgs,
 } from "./components/QueryHandler";
 import SearchBarAndButtons from "./components/SearchBarAndButtons";
 import TableOptions from "./components/TableOptions";
 import useWindowDimensions from "./components/WindowSize";
-import { returnFields, getActiveHeaders } from "./QueryData";
+import { returnFields, getActiveHeaders } from "./data/QueryData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { CSVLink } from "react-csv";
+import { CsvHeaders } from "./data/CsvHeaders";
 
 function App() {
   //Selected plant
@@ -22,7 +25,6 @@ function App() {
     return res;
   }
   const [activePlant, setActivePlant] = useState(acer_dividii);
-  //Plant data
   const [tableData, setTableData] = useState([]);
   const [hiddenColumns, setHiddenColumns] = useState(getActiveHeaders());
   const [filterData, setFilterData] = useState(returnFields);
@@ -35,6 +37,10 @@ function App() {
   }
 
   useEffect(() => {
+    updateTableDataByArgs();
+  }, []);
+
+  useEffect(() => {
     async function updateResultCount() {
       const res = await getCountByArgs(filterData);
       setFilterReultsAmount(res);
@@ -42,7 +48,6 @@ function App() {
     updateResultCount();
   }, [filterData]);
 
-  //Filtering
   return (
     <div className="App">
       <div className="searchAndData">
@@ -82,6 +87,17 @@ function App() {
             activeP={setActivePlant}
             _hiddenColumns={hiddenColumns}
           />
+        </div>
+        <div className="downloadButtonDiv">
+          <button>
+            <CSVLink
+              data={tableData}
+              headers={CsvHeaders}
+              className="downloadButton"
+            >
+              Download til excel {<FontAwesomeIcon icon={faDownload} />}
+            </CSVLink>
+          </button>
         </div>
       </div>
       {useWindowDimensions().width > 1450 && (

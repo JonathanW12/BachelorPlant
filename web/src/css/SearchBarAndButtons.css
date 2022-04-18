@@ -54,7 +54,10 @@ button {
     cursor: pointer;    
 }
 .nameButton button{
-    width: 13rem;
+    min-width: 8rem;
+    max-width: 20rem;
+    white-space: nowrap;
+    padding: 0 3rem 0 3rem;
 }
 .filterButton button{
     min-width: 16rem;

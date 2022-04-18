@@ -1,6 +1,5 @@
-import aesculus2 from "../aesculus_hippocastanum_2.jpg";
 import { PlantToString } from "./PlantToString";
-import CustomImage from "./CustomImage";
+import CustomImage from "../components/CustomImage";
 
 export const ColumnsTemplate = [
   {

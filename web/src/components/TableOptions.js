@@ -6,8 +6,8 @@ import {
   faSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import "../css/TableOptions.css";
-import { returnFields, getActiveHeaders } from "../QueryData";
-import { ColumnsTemplate } from "./ColumnsTemplate";
+import { returnFields, getActiveHeaders } from "../data/QueryData";
+import { ColumnsTemplate } from "../data/ColumnsTemplate";
 
 function TableOptions(props) {
   const [showingColumns, setShowingColumns] = useState(false);

@@ -52,9 +52,9 @@ export const PlantToString = (data, feature) => {
       }
       return soil.slice(0, -2);
     case "wind_tolerance":
-      if (data.wind_tolerance === "1") return "Sensitiv";
-      if (data.wind_tolerance === "2") return "Tolerant";
-      if (data.wind_tolerance === "3") return "Meget tolerant";
+      if (data.wind_tolerance === 1) return "Sensitiv";
+      if (data.wind_tolerance === 2) return "Tolerant";
+      if (data.wind_tolerance === 3) return "Meget tolerant";
     case "plant_type":
       var p_type = "";
       for (var element in data.plant_type) {

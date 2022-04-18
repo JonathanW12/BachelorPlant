@@ -42,7 +42,7 @@ const returnFields = {
   wind_tolerance: { active: true, min: 1, max: 3, v0: 1, v1: 3 },
   description: { active: false, field: "description" },
   water_prefferences: {
-    active: false,
+    active: true,
     min: 1,
     max: 5,
     v0: 2,

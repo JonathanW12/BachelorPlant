@@ -1,4 +1,4 @@
-import { getActiveSearchQuery } from "../QueryData";
+import { getActiveSearchQuery } from "../data/QueryData";
 const url = "http://localhost:4000/graphql";
 
 let queryData = {

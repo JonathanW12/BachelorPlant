@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { PlantToString } from "./PlantToString";
+import React from "react";
+import { PlantToString } from "../data/PlantToString";
 import "../css/PlantShowcase.css";
-import { ColumnsTemplate } from "./ColumnsTemplate";
+import { ColumnsTemplate } from "../data/ColumnsTemplate";
 import CustomImage from "./CustomImage";
-
-//temp
-import aesculus1 from "../aesculus_hippocastanum_fall.jpg";
-import aesculus2 from "../aesculus_hippocastanum_2.jpg";
-import aesculus3 from "../aesculus_hippocastanum_3.jpg";
 
 function PlantShowcase(props) {
   const findHeaderById = (_id) => {
@@ -29,9 +24,15 @@ function PlantShowcase(props) {
   };
 
   const renderRemainingImages = (d) => {
+    let images = [];
     for (let index = 1; index < d.length; index++) {
-      return <CustomImage className="bottomPictures" props={d[index]} />;
+      images.push(
+        <div className="remainingImgInner" key={d[index].tag}>
+          <CustomImage className="remainingImg" props={d[index]} />
+        </div>
+      );
     }
+    return images;
   };
 
   return (
@@ -50,7 +51,7 @@ function PlantShowcase(props) {
             renderAttribute(key, value)
           )}
         </div>
-        <div className="plantShowcaseImageContainer">
+        <div className="remainingImgOuter">
           {renderRemainingImages(props.data.pictures)}
         </div>
       </div>

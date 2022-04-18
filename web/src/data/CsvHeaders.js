@@ -1,0 +1,25 @@
+const CsvHeaders = [
+  { label: "Dansk navn", key: "danish_name" },
+  { label: "Botanisk navn", key: "botanical_name" },
+  { label: "Sollys", key: "site" },
+  { label: "Type", key: "plant_type" },
+  { label: "Jord typer", key: "soil_types" },
+  { label: "Rod system", key: "root_system" },
+  { label: "Vind tolerance", key: "wind_tolerance" },
+  { label: "Giftig", key: "poisonous" },
+  { label: "Frugt", key: "fruit" },
+  { label: "Blomster", key: "flowers" },
+  { label: "Salt tolerance", key: "salt_tolerance" },
+  { label: "vand min", key: "water_prefferences.water_min" },
+  { label: "vand max", key: "water_prefferences.water_min" },
+  { label: "højde min", key: "size_height.size_min" },
+  { label: "højde max", key: "size_height.size_max" },
+  { label: "bredde min", key: "size_spread.size_min" },
+  { label: "bredde max", key: "size_spread.size_max" },
+  { label: "ph min", key: "ph_tolerance.ph_min" },
+  { label: "ph max", key: "ph_tolerance.ph_max" },
+  { label: "beskrivelse", key: "description" },
+];
+module.exports = {
+  CsvHeaders,
+};
