@@ -1,5 +1,5 @@
 import { getActiveSearchQuery } from "../data/QueryData";
-const url = "http://localhost:4000/graphql";
+const url = "https://bachelor-plant-finder-api.herokuapp.com/graphql";
 
 let queryData = {
   returnData: `
