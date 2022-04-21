@@ -1,4 +1,4 @@
-const returnFields = {
+export const returnFields = {
   _id: { active: true, field: "_id" },
   botanical_name: { active: true, field: "botanical_name" },
   danish_name: { active: true, field: "danish_name" },
@@ -52,7 +52,7 @@ const returnFields = {
   size_spread: { active: false, min: 0, max: 30, v0: 0, v1: 30 },
   ph_tolerance: { active: false, min: 5, max: 9, v0: 5, v1: 9 },
 };
-const getActiveHeaders = () => {
+export const getActiveHeaders = () => {
   let ids = Object.keys(returnFields).map((key, index) => {
     if (returnFields[key].active === false) {
       return key;
@@ -61,7 +61,7 @@ const getActiveHeaders = () => {
   });
   return ids.filter(Boolean);
 };
-const getActiveSearchQuery = (returnFields) => {
+export const getActiveSearchQuery = (returnFields) => {
   let ids = Object.keys(returnFields).map((key, index) => {
     switch (key) {
       case "plant_type":
@@ -223,9 +223,4 @@ const getActiveSearchQuery = (returnFields) => {
     ids = `input_easteregg:"test"`;
   }
   return ids;
-};
-module.exports = {
-  returnFields,
-  getActiveHeaders,
-  getActiveSearchQuery,
 };

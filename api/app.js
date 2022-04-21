@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const { graphqlHTTP } = require("express-graphql");
@@ -5,9 +6,9 @@ const { buildSchema } = require("graphql");
 const mongoose = require("mongoose");
 const Plant = require("./models/plant");
 const { events } = require("./models/plant");
-const { restart } = require("nodemon");
 const plant = require("./models/plant");
 const keyToSearchString = require("./SearchQueries");
+//const { restart } = require("nodemon");
 
 const app = express();
 
@@ -286,10 +287,11 @@ app.use(
 
 mongoose
   .connect(
-    `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_PASS}@cluster0.df1do.mongodb.net/${process.env.MONGO_PATH}?retryWrites=true&w=majority`
+    `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_PASS}@cluster0.df1do.mongodb.net/${process.env.MONGO_PATH}?retryWrites=true&w=majority`,
+    { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
-    app.listen(4000);
+    app.listen(process.env.PORT || 4000);
   })
   .catch((err) => {
     console.log(err);

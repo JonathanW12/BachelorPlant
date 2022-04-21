@@ -94,15 +94,14 @@ function App() {
               data={tableData}
               headers={CsvHeaders}
               className="downloadButton"
+              filename="plant_data"
             >
               Download til excel {<FontAwesomeIcon icon={faDownload} />}
             </CSVLink>
           </button>
         </div>
       </div>
-      {useWindowDimensions().width > 1450 && (
-        <PlantShowcase data={activePlant} />
-      )}
+      <PlantShowcase data={activePlant} />
     </div>
   );
 }

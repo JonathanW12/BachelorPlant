@@ -75,3 +75,19 @@ th:nth-child(2),td:nth-child(2){
 .tbodyDiv{
     overflow-x:scroll;
 }
+
+.ptInnerPlantShowcaseContainer{
+    margin-bottom: 2rem;
+    width: 100%;
+    border-style: solid;
+    border-width: var(--size-border-selected);
+    box-sizing: border-box;
+    border-color: var(--clr-border-400);
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+.ptFirstPictureContainer{
+    max-height: 10rem;
+    width: 100%;
+    overflow: hidden;
+}
