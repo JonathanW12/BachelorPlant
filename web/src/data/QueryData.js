@@ -17,7 +17,7 @@ export const returnFields = {
       rodstængel: { field: "rodstængel", checked: true },
     },
   },
-  salt_tolerance: { avtive: true, min: 0, max: 1, v0: 0, v1: 1 },
+  salt_tolerance: { active: true, min: 0, max: 1, v0: 0, v1: 1 },
   site: { active: true, min: 1, max: 5, v0: 1, v1: 5 },
   soil_types: {
     active: false,
@@ -52,6 +52,8 @@ export const returnFields = {
   size_spread: { active: false, min: 0, max: 30, v0: 0, v1: 30 },
   ph_tolerance: { active: false, min: 5, max: 9, v0: 5, v1: 9 },
 };
+export const returnFieldsInitialValue = { ...returnFields };
+
 export const getActiveHeaders = () => {
   let ids = Object.keys(returnFields).map((key, index) => {
     if (returnFields[key].active === false) {

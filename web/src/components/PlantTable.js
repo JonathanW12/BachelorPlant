@@ -37,6 +37,8 @@ function PlantTable({ _hiddenColumns, activeP, tData }) {
 
   const renderAttribute = (key, data) => {
     if (key === "description" || key === "_id" || key === "pictures") return;
+    if (_hiddenColumns.includes(key)) return;
+    console.log(_hiddenColumns);
     return (
       <div className="keyValueText" key={key}>
         {" "}
@@ -126,7 +128,7 @@ function PlantTable({ _hiddenColumns, activeP, tData }) {
       </>
     );
   } else {
-    return <div>{RenderPlants(tData)}</div>;
+    return <div className="ptOuterDiv">{RenderPlants(tData)}</div>;
   }
 }
 

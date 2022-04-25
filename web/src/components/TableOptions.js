@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -28,7 +28,7 @@ function TableOptions(props) {
           }}
         >
           <span>{findHeaderById(key)}</span>
-          {label.active ? (
+          {!props._hiddenColumns.includes(key) ? (
             <FontAwesomeIcon className="checked" icon={faCheckSquare} />
           ) : (
             <FontAwesomeIcon className="unChecked" icon={faSquare} />

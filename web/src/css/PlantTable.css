@@ -83,7 +83,7 @@ th:nth-child(2),td:nth-child(2){
     border-width: var(--size-border-selected);
     box-sizing: border-box;
     border-color: var(--clr-border-400);
-    border-radius: 1rem;
+    border-radius: 0.2rem;
     padding: 0.5rem;
 }
 .ptFirstPictureContainer{

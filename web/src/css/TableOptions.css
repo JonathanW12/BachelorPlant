@@ -57,3 +57,8 @@
 .unChecked{
 color: var(--clr-ineractive-200);
 }
+
+.resetButton{
+    background-color: white;
+    border: none;
+}

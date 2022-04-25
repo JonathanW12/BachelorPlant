@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactSlider from "react-slider";
 import "../css/SearchOptions.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -11,8 +11,11 @@ import {
 } from "./components/QueryHandler";
 import SearchBarAndButtons from "./components/SearchBarAndButtons";
 import TableOptions from "./components/TableOptions";
-import useWindowDimensions from "./components/WindowSize";
-import { returnFields, getActiveHeaders } from "./data/QueryData";
+import {
+  returnFields,
+  getActiveHeaders,
+  returnFieldsInitialValue,
+} from "./data/QueryData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { CSVLink } from "react-csv";
@@ -20,10 +23,7 @@ import { CsvHeaders } from "./data/CsvHeaders";
 
 function App() {
   //Selected plant
-  async function setInitialPlant() {
-    const res = await getPlantById("6241852e3007c66194b1b743");
-    return res;
-  }
+
   const [activePlant, setActivePlant] = useState(acer_dividii);
   const [tableData, setTableData] = useState([]);
   const [hiddenColumns, setHiddenColumns] = useState(getActiveHeaders());
@@ -79,6 +79,7 @@ function App() {
         )}
         <TableOptions
           _setTableData={setTableData}
+          _hiddenColumns={hiddenColumns}
           _setHiddenColumns={setHiddenColumns}
         />
         <div className="dataContainer">
