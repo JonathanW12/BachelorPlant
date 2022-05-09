@@ -8,6 +8,7 @@ import {
   getPlantById,
   getPlantsByArgs,
   getCountByArgs,
+  getInitialPlants,
 } from "./components/QueryHandler";
 import SearchBarAndButtons from "./components/SearchBarAndButtons";
 import TableOptions from "./components/TableOptions";
@@ -23,7 +24,6 @@ import { CsvHeaders } from "./data/CsvHeaders";
 
 function App() {
   //Selected plant
-
   const [activePlant, setActivePlant] = useState(acer_dividii);
   const [tableData, setTableData] = useState([]);
   const [hiddenColumns, setHiddenColumns] = useState(getActiveHeaders());
@@ -37,7 +37,11 @@ function App() {
   }
 
   useEffect(() => {
-    updateTableDataByArgs();
+    async function setInitialData() {
+      const res = await getInitialPlants();
+      setTableData(res);
+    }
+    setInitialData();
   }, []);
 
   useEffect(() => {
@@ -47,6 +51,11 @@ function App() {
     }
     updateResultCount();
   }, [filterData]);
+
+  async function updateActivePlant(_id) {
+    const res = await getPlantById(_id);
+    setActivePlant(res);
+  }
 
   return (
     <div className="App">
@@ -85,7 +94,7 @@ function App() {
         <div className="dataContainer">
           <PlantTable
             tData={tableData}
-            activeP={setActivePlant}
+            _updateActivePlant={updateActivePlant}
             _hiddenColumns={hiddenColumns}
           />
         </div>

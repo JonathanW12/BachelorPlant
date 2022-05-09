@@ -1,7 +1,7 @@
-import { getActiveSearchQuery } from "../data/QueryData";
+import { getActiveSearchQuery, getActiveReturnData } from "../data/QueryData";
 const url = "https://bachelor-plant-finder-api.herokuapp.com/graphql";
 
-let queryData = {
+const queryData = {
   returnData: `
     _id
     botanical_name
@@ -11,12 +11,12 @@ let queryData = {
     flowers
     poisonous
     root_system
-    salt_tolerance
-    site
     soil_types
     plant_type
-    wind_tolerance
     description
+    wind_tolerance
+    salt_tolerance
+    site
     water_prefferences {
       water_min
       water_max
@@ -40,6 +40,39 @@ let queryData = {
     }
     `,
 };
+
+export async function getInitialPlants() {
+  const requestQuery = {
+    query: `
+        query {
+        plants {
+          ${queryData.returnData}   
+        }
+    }
+    `,
+  };
+  const response = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(requestQuery),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (res.status !== 200 && res.status !== 201) {
+        throw new Error("Failed request!");
+      }
+      return res.json();
+    })
+    .then((resData) => {
+      return resData.data.plants;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return response;
+}
+
 export async function getPlantById(_id) {
   const id = _id;
   const requestQuery = {
@@ -73,44 +106,12 @@ export async function getPlantById(_id) {
   return response;
 }
 
-export async function getAllPlantData() {
-  const requestQuery = {
-    query: `
-        query {
-          plants{
-            ${queryData.returnData}  
-          }
-      }
-      `,
-  };
-  const response = await fetch(url, {
-    method: "POST",
-    body: JSON.stringify(requestQuery),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => {
-      if (res.status !== 200 && res.status !== 201) {
-        throw new Error("Failed request!");
-      }
-      return res.json();
-    })
-    .then((resData) => {
-      return resData.data.plants;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  return response;
-}
-
 export async function getPlantsByName(input_name) {
   const requestQuery = {
     query: `
         query {
         plantByName (input_name:"${input_name}"){
-          ${queryData.returnData}
+          ${getActiveReturnData()}
         }
     }
     `,
@@ -144,7 +145,7 @@ export async function getPlantsByArgs(args) {
           plantsMultipleArgs(
             ${getActiveSearchQuery(args)}, 
           ){
-          ${queryData.returnData}
+            ${getActiveReturnData()}
         }
     }
     `,

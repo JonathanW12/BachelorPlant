@@ -16,7 +16,6 @@ function keyToSearchString(args, key) {
   setPlantType(searchString, args);
   setRoot(searchString, args);
   setSoil(searchString, args);
-  console.log(searchString[key] || searchString["default"]);
   return searchString[key] || searchString["default"];
 }
 

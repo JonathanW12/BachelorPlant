@@ -173,6 +173,7 @@ app.use(
     rootValue: {
       plants: () => {
         return Plant.find()
+          .limit(15)
           .then((plants) => {
             return plants.map((plant) => {
               return { ...plant._doc, _id: plant._id.toString() };
@@ -192,6 +193,7 @@ app.use(
             { danish_name: { $regex: args.input_name } },
           ],
         })
+          .limit(300)
           .then((plants) => {
             return plants.map((plant) => {
               return { ...plant._doc, _id: plant._id.toString() };
@@ -213,6 +215,7 @@ app.use(
         if (searchObj.$and[0] === "") {
           //handle if empty args
           return Plant.find()
+            .limit(300)
             .then((plants) => {
               return plants.map((plant) => {
                 return { ...plant._doc, _id: plant._id.toString() };
@@ -224,6 +227,7 @@ app.use(
         }
 
         return Plant.find(searchObj)
+          .limit(300)
           .then((plants) => {
             return plants.map((plant) => {
               return { ...plant._doc, _id: plant._id.toString() };
@@ -271,7 +275,6 @@ app.use(
         return newPlant
           .save()
           .then((result) => {
-            console.log(result);
             return { ...result._doc, _id: result._id.toString() };
           })
           .catch((err) => {

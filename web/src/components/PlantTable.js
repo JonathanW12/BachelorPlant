@@ -7,7 +7,7 @@ import useWindowDimensions from "./WindowSize";
 import CustomImage from "./CustomImage";
 import { PlantToString } from "../data/PlantToString";
 
-function PlantTable({ _hiddenColumns, activeP, tData }) {
+function PlantTable({ _hiddenColumns, _updateActivePlant, tData }) {
   const columns = useMemo(() => ColumnsTemplate, []);
   const data = useMemo(() => tData, [tData]);
 
@@ -38,7 +38,6 @@ function PlantTable({ _hiddenColumns, activeP, tData }) {
   const renderAttribute = (key, data) => {
     if (key === "description" || key === "_id" || key === "pictures") return;
     if (_hiddenColumns.includes(key)) return;
-    console.log(_hiddenColumns);
     return (
       <div className="keyValueText" key={key}>
         {" "}
@@ -53,7 +52,7 @@ function PlantTable({ _hiddenColumns, activeP, tData }) {
   const SinglePlantView = (plant) => {
     return (
       <div
-        onClick={() => activeP(plant.plant)}
+        onClick={() => _updateActivePlant(plant.plant._id)}
         className="ptInnerPlantShowcaseContainer"
       >
         <div className="ptFirstPictureContainer">
@@ -111,7 +110,7 @@ function PlantTable({ _hiddenColumns, activeP, tData }) {
                   <tr
                     {...row.getRowProps()}
                     onClick={() => {
-                      activeP(row.original);
+                      _updateActivePlant(row.original._id);
                     }}
                   >
                     {row.cells.map((cell) => {

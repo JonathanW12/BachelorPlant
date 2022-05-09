@@ -63,6 +63,30 @@ export const getActiveHeaders = () => {
   });
   return ids.filter(Boolean);
 };
+
+export const getActiveReturnData = () => {
+  let ids = Object.keys(returnFields).map((key, index) => {
+    if (returnFields[key].active === true) {
+      switch (key) {
+        case "size_height":
+          return "size_height {size_min,size_max}";
+        case "size_spread":
+          return "size_spread {size_min,size_max}";
+        case "ph_tolerance":
+          return "ph_tolerance {ph_min,ph_max}";
+        case "water_prefferences":
+          return "water_prefferences {water_min,water_max}";
+        default:
+          return key;
+      }
+    }
+  });
+  //adding mandatory fields
+  ids.push("botanical_name", "pictures {url, tag, origin}");
+  ids = ids.filter(Boolean).join();
+  return ids;
+};
+
 export const getActiveSearchQuery = (returnFields) => {
   let ids = Object.keys(returnFields).map((key, index) => {
     switch (key) {

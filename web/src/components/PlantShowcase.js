@@ -17,7 +17,9 @@ function PlantShowcase(props) {
   useEffect(() => {
     setIsOpen(true);
   }, [props.data]);
-
+  useEffect(() => {
+    setIsOpen(false);
+  }, []);
   const renderAttribute = (key, data) => {
     if (key === "description" || key === "_id" || key === "pictures") return;
     return (

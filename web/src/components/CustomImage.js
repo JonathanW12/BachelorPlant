@@ -8,6 +8,6 @@ function CustomImage({ props }) {
     origin:
       props && "origin" in props ? props.origin : "No origin story to tell",
   };
-  return <img src={pic.url} alt={pic.tag} />;
+  return <img src={pic.url} alt={pic.tag} loading="lazy" />;
 }
 export default CustomImage;
