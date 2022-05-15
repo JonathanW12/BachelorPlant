@@ -12,13 +12,12 @@ function TableOptions(props) {
   const [showingColumns, setShowingColumns] = useState(false);
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
-  const checkBoxComponent = (key, label) => {
+  const checkBoxComponent = (key) => {
     return (
       <div className="checkBox" key={key}>
         <button
           onClick={() => {
-            label.active = !label.active;
-            forceUpdate();
+            returnFields[key].active = !returnFields[key].active;
             props._setHiddenColumns(getActiveHeaders());
           }}
         >
@@ -65,7 +64,7 @@ function TableOptions(props) {
               ) {
                 return;
               }
-              return checkBoxComponent(key, returnFields[key]);
+              return checkBoxComponent(key);
             })}
           </div>
           <div className="updateTableButtonContainer">
