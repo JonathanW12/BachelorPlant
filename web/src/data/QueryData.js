@@ -1,11 +1,15 @@
 export const returnFields = {
-  _id: { active: true, field: "_id" },
-  botanical_name: { active: true, field: "botanical_name" },
-  danish_name: { active: true, field: "danish_name" },
-  foliage: { active: false, field: "foliage" },
-  fruit: { active: false, min: 0, max: 1, v0: 0, v1: 1 },
-  flowers: { active: false, min: 0, max: 1, v0: 0, v1: 1 },
-  poisonous: { active: true, min: 0, max: 1, v0: 0, v1: 1 },
+  _id: { active: true, field: "_id", ref: "id" },
+  botanical_name: {
+    active: true,
+    field: "botanical_name",
+    ref: "Botanisk navn",
+  },
+  danish_name: { active: true, field: "danish_name", ref: "Dansk navn" },
+  foliage: { active: false, field: "foliage", ref: "Bladtype" },
+  fruit: { active: false, min: 0, max: 1, v0: 0, v1: 1, ref: "Frugter" },
+  flowers: { active: false, min: 0, max: 1, v0: 0, v1: 1, ref: "Blomster" },
+  poisonous: { active: true, min: 0, max: 1, v0: 0, v1: 1, ref: "Giftig" },
   root_system: {
     active: false,
     v0: {
@@ -16,9 +20,17 @@ export const returnFields = {
       luftrod: { field: "luftrod", checked: true },
       rodstængel: { field: "rodstængel", checked: true },
     },
+    ref: "Rod system",
   },
-  salt_tolerance: { active: true, min: 0, max: 1, v0: 0, v1: 1 },
-  site: { active: true, min: 1, max: 5, v0: 1, v1: 5 },
+  salt_tolerance: {
+    active: true,
+    min: 0,
+    max: 1,
+    v0: 0,
+    v1: 1,
+    ref: "Salt tolerance",
+  },
+  site: { active: true, min: 1, max: 5, v0: 1, v1: 5, ref: "Sollys" },
   soil_types: {
     active: false,
     v0: {
@@ -28,6 +40,7 @@ export const returnFields = {
       lerjord3: { field: "lerjord 40%", checked: true },
       siltjord: { field: "siltjord", checked: true },
     },
+    ref: "Jord typer",
   },
   plant_type: {
     active: false,
@@ -38,19 +51,35 @@ export const returnFields = {
       gras: { field: "gras", checked: true },
       urt: { field: "urt", checked: true },
     },
+    ref: "Plant type",
   },
-  wind_tolerance: { active: true, min: 1, max: 3, v0: 1, v1: 3 },
-  description: { active: false, field: "description" },
+  wind_tolerance: {
+    active: true,
+    min: 1,
+    max: 3,
+    v0: 1,
+    v1: 3,
+    ref: " Vind tolerance",
+  },
+  description: { active: false, field: "description", ref: "Beskrivelse" },
   water_prefferences: {
     active: true,
     min: 1,
     max: 5,
     v0: 2,
     v1: 5,
+    ref: "Vand forbrug",
   },
-  size_height: { active: true, min: 0, max: 50, v0: 2, v1: 28 },
-  size_spread: { active: false, min: 0, max: 30, v0: 0, v1: 30 },
-  ph_tolerance: { active: false, min: 5, max: 9, v0: 5, v1: 9 },
+  size_height: { active: true, min: 0, max: 50, v0: 2, v1: 28, ref: "Højde" },
+  size_spread: { active: false, min: 0, max: 30, v0: 0, v1: 30, ref: "Brede" },
+  ph_tolerance: {
+    active: false,
+    min: 5,
+    max: 9,
+    v0: 5,
+    v1: 9,
+    ref: "Ph tolerance",
+  },
 };
 export const returnFieldsInitialValue = { ...returnFields };
 

@@ -102,9 +102,9 @@ function App() {
           <button>
             <CSVLink
               data={tableData}
-              headers={CsvHeaders}
               className="downloadButton"
               filename="plant_data"
+              headers={CsvHeaders}
             >
               Download til excel {<FontAwesomeIcon icon={faDownload} />}
             </CSVLink>

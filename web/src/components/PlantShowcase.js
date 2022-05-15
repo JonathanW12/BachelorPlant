@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { PlantToString } from "../data/PlantToString";
 import "../css/PlantShowcase.css";
-import { ColumnsTemplate } from "../data/ColumnsTemplate";
 import CustomImage from "./CustomImage";
 import useWindowDimensions from "./WindowSize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRemove } from "@fortawesome/free-solid-svg-icons";
+import { returnFields } from "../data/QueryData";
 
 function PlantShowcase(props) {
   const [isOpen, setIsOpen] = useState(false);
-  const findHeaderById = (_id) => {
-    var head = Object.values(ColumnsTemplate).find((e) => e.id == _id);
-    return head.Header;
-  };
 
   useEffect(() => {
     setIsOpen(true);
@@ -26,7 +22,7 @@ function PlantShowcase(props) {
       <div className="keyValueText" key={key}>
         {" "}
         <span key={key} className="plantHeader">
-          {findHeaderById(key)}:
+          {returnFields[key].ref}:
         </span>
         <span className="plantValue">{PlantToString(props.data, key)}</span>
       </div>

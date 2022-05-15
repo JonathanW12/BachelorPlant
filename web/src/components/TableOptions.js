@@ -7,19 +7,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "../css/TableOptions.css";
 import { returnFields, getActiveHeaders } from "../data/QueryData";
-import { ColumnsTemplate } from "../data/ColumnsTemplate";
 
 function TableOptions(props) {
   const [showingColumns, setShowingColumns] = useState(false);
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
-  const findHeaderById = (_id) => {
-    var head = Object.values(ColumnsTemplate).find((e) => e.id === _id);
-    return head.Header;
-  };
 
   const checkBoxComponent = (key, label) => {
     return (
-      <div className="checkBox">
+      <div className="checkBox" key={key}>
         <button
           onClick={() => {
             label.active = !label.active;
@@ -27,7 +22,7 @@ function TableOptions(props) {
             props._setHiddenColumns(getActiveHeaders());
           }}
         >
-          <span>{findHeaderById(key)}</span>
+          <span>{returnFields[key].ref}</span>
           {!props._hiddenColumns.includes(key) ? (
             <FontAwesomeIcon className="checked" icon={faCheckSquare} />
           ) : (
@@ -61,23 +56,17 @@ function TableOptions(props) {
       {showingColumns && (
         <div>
           <div className="checkBoxContainer">
-            {checkBoxComponent("danish_name", returnFields.danish_name)}
-            {checkBoxComponent("site", returnFields.site)}
-            {checkBoxComponent("wind_tolerance", returnFields.wind_tolerance)}
-            {checkBoxComponent("size_spread", returnFields.size_spread)}
-            {checkBoxComponent("poisonous", returnFields.poisonous)}
-            {checkBoxComponent("plant_type", returnFields.plant_type)}
-            {checkBoxComponent("fruit", returnFields.fruit)}
-            {checkBoxComponent(
-              "water_prefferences",
-              returnFields.water_prefferences
-            )}
-            {checkBoxComponent("flowers", returnFields.flowers)}
-            {checkBoxComponent("root_system", returnFields.root_system)}
-            {checkBoxComponent("ph_tolerance", returnFields.ph_tolerance)}
-            {checkBoxComponent("soil_types", returnFields.soil_types)}
-            {checkBoxComponent("size_height", returnFields.size_height)}
-            {checkBoxComponent("salt_tolerance", returnFields.salt_tolerance)}
+            {Object.keys(returnFields).map((key, value) => {
+              if (
+                key === "description" ||
+                key === "_id" ||
+                key === "pictures" ||
+                key === "botanical_name"
+              ) {
+                return;
+              }
+              return checkBoxComponent(key, returnFields[key]);
+            })}
           </div>
           <div className="updateTableButtonContainer">
             <button onClick={() => setShowingColumns(!showingColumns)}>

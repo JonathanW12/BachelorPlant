@@ -1,4 +1,4 @@
-const CsvHeaders = [
+export const CsvHeaders = [
   { label: "Dansk navn", key: "danish_name" },
   { label: "Botanisk navn", key: "botanical_name" },
   { label: "Sollys", key: "site" },
@@ -20,6 +20,3 @@ const CsvHeaders = [
   { label: "ph max", key: "ph_tolerance.ph_max" },
   { label: "beskrivelse", key: "description" },
 ];
-module.exports = {
-  CsvHeaders,
-};

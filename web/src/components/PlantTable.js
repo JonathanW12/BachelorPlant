@@ -1,14 +1,16 @@
 import React, { useMemo, useEffect, useReducer } from "react";
 import { useTable } from "react-table";
-import { ColumnsTemplate } from "../data/ColumnsTemplate";
+import { getColumnsTemplate } from "../data/ColumnsTemplate";
 import "../css/PlantTable.css";
 import { getActiveHeaders } from "../data/QueryData";
 import useWindowDimensions from "./WindowSize";
 import CustomImage from "./CustomImage";
 import { PlantToString } from "../data/PlantToString";
+import { returnFields } from "../data/QueryData";
 
 function PlantTable({ _hiddenColumns, _updateActivePlant, tData }) {
-  const columns = useMemo(() => ColumnsTemplate, []);
+  const CTemplate = getColumnsTemplate();
+  const columns = useMemo(() => CTemplate, []);
   const data = useMemo(() => tData, [tData]);
 
   const {
@@ -30,11 +32,6 @@ function PlantTable({ _hiddenColumns, _updateActivePlant, tData }) {
     setHiddenColumns(getActiveHeaders());
   }, [_hiddenColumns]);
 
-  const findHeaderById = (_id) => {
-    var head = Object.values(ColumnsTemplate).find((e) => e.id == _id);
-    return head.Header;
-  };
-
   const renderAttribute = (key, data) => {
     if (key === "description" || key === "_id" || key === "pictures") return;
     if (_hiddenColumns.includes(key)) return;
@@ -42,7 +39,7 @@ function PlantTable({ _hiddenColumns, _updateActivePlant, tData }) {
       <div className="keyValueText" key={key}>
         {" "}
         <span key={key} className="plantHeader">
-          {findHeaderById(key)}:
+          {returnFields[key].ref}:
         </span>
         <span className="plantValue">{PlantToString(data, key)}</span>
       </div>
